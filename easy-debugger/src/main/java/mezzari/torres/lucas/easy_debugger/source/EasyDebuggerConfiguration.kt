@@ -20,11 +20,19 @@ class EasyDebuggerConfiguration {
     var exceptionHandler: ExceptionHandler = RedirectExceptionHandler(ExceptionActivity::class)
         private set
 
+    var hasFloatingView: Boolean = false
+        private set
+
     class Builder {
         private val configuration: EasyDebuggerConfiguration = EasyDebuggerConfiguration()
 
         fun setEnable(isEnable: Boolean): Builder {
             configuration.shouldUseDefaultHandler = isEnable
+            return this
+        }
+
+        fun setFloatingViewEnable(isEnable: Boolean): Builder {
+            configuration.hasFloatingView = isEnable
             return this
         }
 

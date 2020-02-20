@@ -2,8 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="mezzari.torres.lucas.easy_debugger">
 
-    <application>
-        <activity android:name=".view.ExceptionActivity"></activity>
-    </application>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
+    <application>
+        <activity android:name=".view.ExceptionActivity" />
+
+        <service
+            android:name=".service.FloatingDebugViewService"
+            android:enabled="true"
+            android:exported="false" />
+    </application>
 </manifest>

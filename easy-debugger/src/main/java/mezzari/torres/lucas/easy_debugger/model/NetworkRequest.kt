@@ -3,6 +3,7 @@ package mezzari.torres.lucas.easy_debugger.model
 import okhttp3.Headers
 import okhttp3.RequestBody
 import okio.Buffer
+import kotlin.text.Charsets.UTF_8
 
 /**
  * @author Lucas T. Mezzari
@@ -11,20 +12,14 @@ import okio.Buffer
 class NetworkRequest (
     val method: String,
     val headers: Headers,
-    val body: RequestBody?
+    val body: String? = null
 ) {
-
-    private fun stringBody(): String {
-        val buffer = Buffer()
-        body?.writeTo(buffer)
-        return buffer.readUtf8()
-    }
 
     override fun toString(): String {
         return "{" +
                 "\n\tmethod: " + method +
                 "\n\theaders: " + headers.toString() +
-                "\n\tbody: " + stringBody() +
+                "\n\tbody: " + body +
                 "\n}"
     }
 }
