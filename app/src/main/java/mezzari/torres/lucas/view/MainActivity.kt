@@ -13,8 +13,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        btnRequest.setOnClickListener {
+        btnRequestCEP.setOnClickListener {
             startActivity(Intent(this, CepActivity::class.java))
+        }
+
+        btnRequestJokes.setOnClickListener {
+            startActivity(Intent(this, JokesActivity::class.java))
         }
 
         btnLogs.setOnClickListener {

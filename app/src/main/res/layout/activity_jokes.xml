@@ -13,10 +13,9 @@
         android:entries="@array/array_urls"/>
 
     <EditText
-        android:id="@+id/tvCep"
+        android:id="@+id/tvJokeType"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="number"/>
+        android:layout_height="wrap_content"/>
 
     <Button
         android:id="@+id/btnSend"

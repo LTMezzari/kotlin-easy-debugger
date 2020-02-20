@@ -7,7 +7,7 @@
     tools:context=".view.MainActivity">
 
     <Button
-        android:id="@+id/btnRequest"
+        android:id="@+id/btnRequestCEP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="32dp"
@@ -17,12 +17,22 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:id="@+id/btnRequestJokes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dp"
+        android:text="Request Jokes"
+        app:layout_constraintTop_toBottomOf="@id/btnRequestCEP"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <Button
         android:id="@+id/btnLogs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="32dp"
         android:text="Check Logs"
-        app:layout_constraintTop_toBottomOf="@id/btnRequest"
+        app:layout_constraintTop_toBottomOf="@id/btnRequestJokes"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 

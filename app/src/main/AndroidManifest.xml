@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.LogActivity"></activity>
+        <activity android:name=".view.JokesActivity"></activity>
+        <activity android:name=".view.LogActivity" />
         <activity android:name=".view.CepActivity" />
         <activity android:name=".view.MainActivity">
             <intent-filter>

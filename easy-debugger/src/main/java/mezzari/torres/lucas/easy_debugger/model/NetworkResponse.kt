@@ -2,6 +2,7 @@ package mezzari.torres.lucas.easy_debugger.model
 
 import okhttp3.Headers
 import okhttp3.ResponseBody
+import okio.Buffer
 
 /**
  * @author Lucas T. Mezzari
@@ -16,7 +17,7 @@ class NetworkResponse(
         return "{" +
                 "\n\tcode: " + code +
                 "\n\theaders: " + headers.toString() +
-                "\n\tresponse: " + response.toString() +
+                "\n\tresponse: " + response?.toString() +
                 "\n}"
     }
 }
