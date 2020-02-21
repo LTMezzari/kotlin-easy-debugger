@@ -7,6 +7,8 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
+import mezzari.torres.lucas.easy_debugger.BuildConfig
+import java.lang.Exception
 
 /**
  * @author Lucas T. Mezzari
@@ -49,7 +51,7 @@ object EasyDebugger {
                 lastStartedActivity = activity
                 configuration.activityListener?.onActivityStarted(activity)
 
-                if (startCount == 1 && configuration.hasFloatingView) {
+                if (configuration.hasFloatingView && !hasPutTheFloatingView) {
                     placeDebugView(activity)
                 }
             }
@@ -118,8 +120,15 @@ object EasyDebugger {
                 activity
             )
         ) {
-            hasPutTheFloatingView = true
-            activity.startService(Intent(activity, configuration.floatingViewService.java))
+            try {
+                hasPutTheFloatingView = true
+                activity.startService(Intent(activity, configuration.floatingViewService.java))
+            } catch (e: Exception) {
+                if (BuildConfig.DEBUG)
+                    e.printStackTrace()
+
+                hasPutTheFloatingView = false
+            }
         }
     }
 }
