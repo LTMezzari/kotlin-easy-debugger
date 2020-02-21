@@ -1,30 +1,40 @@
 package mezzari.torres.lucas.easy_debugger.source
 
 import android.app.Application
+import android.view.View
 import mezzari.torres.lucas.easy_debugger.BuildConfig
 import mezzari.torres.lucas.easy_debugger.generic.ExceptionHandler
+import mezzari.torres.lucas.easy_debugger.service.FloatingDebugViewService
 import mezzari.torres.lucas.easy_debugger.source.exception.RedirectExceptionHandler
 import mezzari.torres.lucas.easy_debugger.view.ExceptionActivity
+import kotlin.reflect.KClass
 
 /**
  * @author Lucas T. Mezzari
  * @since 19/02/2020
  */
-class EasyDebuggerConfiguration {
-    var shouldUseDefaultHandler: Boolean = !BuildConfig.DEBUG
+class Configuration private constructor() {
+
+    internal var shouldUseDefaultHandler: Boolean = !BuildConfig.DEBUG
         private set
 
-    var activityListener: Application.ActivityLifecycleCallbacks? = null
+    internal var activityListener: Application.ActivityLifecycleCallbacks? = null
         private set
 
-    var exceptionHandler: ExceptionHandler = RedirectExceptionHandler(ExceptionActivity::class)
+    internal var exceptionHandler: ExceptionHandler = RedirectExceptionHandler(ExceptionActivity::class)
         private set
 
-    var hasFloatingView: Boolean = false
+    internal var hasFloatingView: Boolean = true
+        private set
+
+    internal var floatingViewService: KClass<*> = FloatingDebugViewService::class
+        private set
+
+    internal var onFloatingViewClickListener: ((View) -> Unit)? = null
         private set
 
     class Builder {
-        private val configuration: EasyDebuggerConfiguration = EasyDebuggerConfiguration()
+        private val configuration: Configuration = Configuration()
 
         fun setEnable(isEnable: Boolean): Builder {
             configuration.shouldUseDefaultHandler = isEnable
@@ -46,8 +56,18 @@ class EasyDebuggerConfiguration {
             return this
         }
 
-        fun build(): EasyDebuggerConfiguration {
-            return configuration
+        fun setFloatingViewService(service: KClass<*>): Builder {
+            configuration.floatingViewService = service
+            return this
+        }
+
+        fun setOnFloatingViewClickListener(onFloatingViewClockListener: (View) -> Unit): Builder {
+            configuration.onFloatingViewClickListener = onFloatingViewClockListener
+            return this
+        }
+
+        fun build() {
+            EasyDebugger.initialize(configuration)
         }
     }
 }

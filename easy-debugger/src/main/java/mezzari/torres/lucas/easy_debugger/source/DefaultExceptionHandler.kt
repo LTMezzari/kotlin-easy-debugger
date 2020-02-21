@@ -6,7 +6,7 @@ import mezzari.torres.lucas.easy_debugger.generic.ExceptionHandler
  * @author Lucas T. Mezzari
  * @since 19/02/2020
  */
-internal class EasyDebuggerExceptionHandler(
+internal class DefaultExceptionHandler(
     private val defaultExceptionHandler: Thread.UncaughtExceptionHandler,
     private val exceptionHandler: ExceptionHandler,
     private val shouldUseDefault: Boolean

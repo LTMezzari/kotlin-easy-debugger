@@ -2,13 +2,11 @@ package mezzari.torres.lucas.easy_debugger.source
 
 import android.app.Activity
 import android.app.Application
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
-import mezzari.torres.lucas.easy_debugger.service.FloatingDebugViewService
 
 /**
  * @author Lucas T. Mezzari
@@ -16,23 +14,32 @@ import mezzari.torres.lucas.easy_debugger.service.FloatingDebugViewService
  */
 object EasyDebugger {
 
+    private const val PERMISSION_OVERLAY = 2048
+
+    private lateinit var application: Application
+    internal lateinit var configuration: Configuration
+
     internal var lastStartedActivity: Activity? = null
     internal var startCount = 0
-    internal lateinit var configuration: EasyDebuggerConfiguration
 
     private var hasPutTheFloatingView: Boolean = false
 
-    fun initialize(
-        application: Application,
-        configuration: EasyDebuggerConfiguration = EasyDebuggerConfiguration()
+    fun builder(application: Application): Configuration.Builder {
+        this.application = application
+        return Configuration.Builder()
+    }
+
+    internal fun initialize(
+        configuration: Configuration
     ) {
         this.configuration = configuration
         setupActivityListener(application, configuration)
         setupExceptionHandler(configuration)
     }
 
-    private fun setupActivityListener(application: Application, configuration: EasyDebuggerConfiguration) {
-        application.registerActivityLifecycleCallbacks(object : Application.ActivityLifecycleCallbacks {
+    private fun setupActivityListener(application: Application, configuration: Configuration) {
+        application.registerActivityLifecycleCallbacks(object :
+            Application.ActivityLifecycleCallbacks {
             override fun onActivityPaused(activity: Activity) {
                 configuration.activityListener?.onActivityPaused(activity)
             }
@@ -59,8 +66,16 @@ object EasyDebugger {
                 startCount--
                 if (startCount <= 0) {
                     lastStartedActivity = null
-                    hasPutTheFloatingView = false
-                    activity.stopService(Intent(activity, FloatingDebugViewService::class.java))
+
+                    if (hasPutTheFloatingView) {
+                        hasPutTheFloatingView = false
+                        activity.stopService(
+                            Intent(
+                                activity,
+                                configuration.floatingViewService.java
+                            )
+                        )
+                    }
                 }
                 configuration.activityListener?.onActivityStopped(activity)
             }
@@ -75,12 +90,13 @@ object EasyDebugger {
         })
     }
 
-    private fun setupExceptionHandler(configuration: EasyDebuggerConfiguration) {
-        val defaultHandler: Thread.UncaughtExceptionHandler = Thread.getDefaultUncaughtExceptionHandler()
-            ?: Thread.UncaughtExceptionHandler { _, t -> t.printStackTrace() }
+    private fun setupExceptionHandler(configuration: Configuration) {
+        val defaultHandler: Thread.UncaughtExceptionHandler =
+            Thread.getDefaultUncaughtExceptionHandler()
+                ?: Thread.UncaughtExceptionHandler { _, t -> t.printStackTrace() }
 
         Thread.setDefaultUncaughtExceptionHandler(
-            EasyDebuggerExceptionHandler(
+            DefaultExceptionHandler(
                 defaultHandler,
                 configuration.exceptionHandler,
                 configuration.shouldUseDefaultHandler
@@ -93,11 +109,17 @@ object EasyDebugger {
             return
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(activity)) {
-            val intent = Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,Uri.parse("package:" + activity.packageName))
-            activity.startActivityForResult(intent, 2048)
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && Settings.canDrawOverlays(activity)) {
+            val intent = Intent(
+                Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                Uri.parse("package:" + activity.packageName)
+            )
+            activity.startActivityForResult(intent, PERMISSION_OVERLAY)
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && Settings.canDrawOverlays(
+                activity
+            )
+        ) {
             hasPutTheFloatingView = true
-            activity.startService(Intent(activity, FloatingDebugViewService::class.java))
+            activity.startService(Intent(activity, configuration.floatingViewService.java))
         }
     }
 }

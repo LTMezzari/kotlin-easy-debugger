@@ -36,6 +36,7 @@ dependencies {
     //Android
     implementation libraries.app_compat
     implementation libraries.constraint_layout
+    implementation libraries.recycler_view
 
     //Tests
     testImplementation libraries.junit

@@ -21,10 +21,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, JokesActivity::class.java))
         }
 
-        btnLogs.setOnClickListener {
-            startActivity(Intent(this, LogActivity::class.java))
-        }
-
         btnExplode.setOnClickListener {
             throw RuntimeException("User pressed the wrong button")
         }

@@ -13,13 +13,4 @@ class NetworkRequest (
     val method: String,
     val headers: Headers,
     val body: String? = null
-) {
-
-    override fun toString(): String {
-        return "{" +
-                "\n\tmethod: " + method +
-                "\n\theaders: " + headers.toString() +
-                "\n\tbody: " + body +
-                "\n}"
-    }
-}
+)

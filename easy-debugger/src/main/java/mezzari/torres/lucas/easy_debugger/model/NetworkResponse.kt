@@ -13,13 +13,4 @@ class NetworkResponse(
     val code: Int,
     val headers: Headers,
     val response: String?
-) {
-
-    override fun toString(): String {
-        return "{" +
-                "\n\tcode: " + code +
-                "\n\theaders: " + headers.toString() +
-                "\n\tresponse: " + response +
-                "\n}"
-    }
-}
+)

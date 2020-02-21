@@ -39,17 +39,16 @@ class NetworkLoggerModule: Network.OkHttpClientLevelModule {
     private fun buildRequestLogs(request: Request): NetworkRequest {
         val method = request.method
         val headers = request.headers
-        val body: String?
-
         val requestBody = request.body
-        if (requestBody != null) {
+
+        val body = if (requestBody != null) {
             val buffer = Buffer()
             requestBody.writeTo(buffer)
             val contentType = requestBody.contentType()
             val charset: Charset = contentType?.charset(UTF_8) ?: UTF_8
-            body = buffer.readString(charset)
+            buffer.readString(charset)
         } else {
-            body = null
+            null
         }
 
         return NetworkRequest(method, headers, body)
@@ -59,19 +58,18 @@ class NetworkLoggerModule: Network.OkHttpClientLevelModule {
         val code = response.code
         val headers = response.headers
         val responseBody = response.body
-        val body: String?
 
-        if (responseBody != null) {
+        val body = if (responseBody != null) {
             val source = responseBody.source()
-            source.request(Long.MAX_VALUE) // Buffer the entire body.
+            source.request(Long.MAX_VALUE)
             val buffer = source.buffer
 
             val contentType = responseBody.contentType()
             val charset: Charset = contentType?.charset(UTF_8) ?: UTF_8
 
-            body = buffer.clone().readString(charset)
+            buffer.clone().readString(charset)
         } else {
-            body = null
+            null
         }
 
         return NetworkResponse(code, headers, body)
