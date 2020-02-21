@@ -2,7 +2,9 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:padding="5dp"
+    android:background="@drawable/shape_debugger_view">
 
     <RelativeLayout
         android:id="@+id/rlDebugContainer"
@@ -16,6 +18,6 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:text="Debugger"
-            android:background="@android:color/white"/>
+            android:textColor="@android:color/black"/>
     </RelativeLayout>
 </FrameLayout>

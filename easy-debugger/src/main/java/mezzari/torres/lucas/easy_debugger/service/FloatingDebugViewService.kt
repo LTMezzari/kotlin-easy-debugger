@@ -1,9 +1,7 @@
 package mezzari.torres.lucas.easy_debugger.service
 
-import android.view.LayoutInflater
-import android.view.MotionEvent
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.view.Gravity.*
 import kotlinx.android.synthetic.main.layout_floating_debug_view.view.*
 import mezzari.torres.lucas.easy_debugger.R
 import mezzari.torres.lucas.easy_debugger.generic.BaseFloatingViewService
@@ -23,6 +21,12 @@ class FloatingDebugViewService: BaseFloatingViewService() {
         return inflater.inflate(R.layout.layout_floating_debug_view, parent)
     }
 
+    override fun onCreateLayoutParams(): WindowManager.LayoutParams {
+        val params = super.onCreateLayoutParams()
+        params.gravity = END or BOTTOM
+        return params
+    }
+
     override fun onViewCreated(view: View) {
         super.onViewCreated(view)
         floatingDebugView = view
@@ -30,42 +34,5 @@ class FloatingDebugViewService: BaseFloatingViewService() {
         floatingDebugView.rlDebugContainer.setOnClickListener {
             EasyDebugger.configuration.onFloatingViewClickListener?.invoke(it)
         }
-
-        floatingDebugView.rlDebugContainer.setOnTouchListener(object: View.OnTouchListener {
-
-            private var initialX: Int = 0
-            private var initialY: Int = 0
-            private var initialTouchX: Float = 0F
-            private var initialTouchY: Float = 0F
-
-            override fun onTouch(view: View?, e: MotionEvent?): Boolean {
-                val event = e ?: return false
-                val duration = event.eventTime - event.downTime
-                when (event.actionMasked) {
-                    MotionEvent.ACTION_DOWN -> {
-                        initialX = params.x
-                        initialY = params.y
-                        initialTouchX = event.rawX
-                        initialTouchY = event.rawY
-                        return true
-                    }
-
-                    MotionEvent.ACTION_UP -> {
-                        if (duration < 100)
-                            view?.performClick()
-
-                        return true
-                    }
-
-                    MotionEvent.ACTION_MOVE -> {
-                        params.x = initialX + ((event.rawX - initialTouchX)).toInt()
-                        params.y = initialY + ((event.rawY - initialTouchY)).toInt()
-                        windowManager.updateViewLayout(floatingDebugView, params)
-                        return true
-                    }
-                }
-                return false
-            }
-        })
     }
 }

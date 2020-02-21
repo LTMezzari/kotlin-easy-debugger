@@ -6,12 +6,6 @@
     android:orientation="vertical"
     tools:context=".view.CepActivity">
 
-    <Spinner
-        android:id="@+id/spUrls"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:entries="@array/array_urls"/>
-
     <EditText
         android:id="@+id/tvJokeType"
         android:layout_width="match_parent"

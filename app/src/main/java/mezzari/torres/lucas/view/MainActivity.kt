@@ -1,13 +1,13 @@
 package mezzari.torres.lucas.view
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
 import mezzari.torres.lucas.R
+import mezzari.torres.lucas.generic.BaseActivity
 import java.lang.RuntimeException
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

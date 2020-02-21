@@ -2,6 +2,7 @@ package mezzari.torres.lucas.easy_debugger.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import kotlinx.android.synthetic.main.activity_exception.*
 import mezzari.torres.lucas.easy_debugger.R
 import java.io.PrintWriter
@@ -19,5 +20,7 @@ class ExceptionActivity : AppCompatActivity() {
             exception.printStackTrace(PrintWriter(sw))
             tvException.text = sw.toString()
         }
+
+        tvException.movementMethod = ScrollingMovementMethod()
     }
 }

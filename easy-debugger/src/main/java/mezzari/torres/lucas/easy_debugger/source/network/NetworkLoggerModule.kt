@@ -8,6 +8,7 @@ import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
 import okio.Buffer
+import java.lang.Exception
 import java.nio.charset.Charset
 import kotlin.text.Charsets.UTF_8
 
@@ -23,11 +24,17 @@ class NetworkLoggerModule: Network.OkHttpClientLevelModule {
 
         val networkRequest = buildRequestLogs(request)
 
-        val response = it.proceed(request)
+        val response: Response
+        try {
+            response = it.proceed(request)
 
-        val networkResponse = buildResponseLogs(response)
+            val networkResponse = buildResponseLogs(response)
 
-        networkLogs += NetworkLog(url, networkRequest, networkResponse)
+            networkLogs += NetworkLog(url, networkRequest, networkResponse, response.isSuccessful)
+        } catch (e: Exception) {
+            networkLogs += NetworkLog(url, networkRequest, null, false, e)
+            throw e
+        }
 
         return@Interceptor response
     }
