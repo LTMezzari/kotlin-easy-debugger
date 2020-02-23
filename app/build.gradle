@@ -6,7 +6,7 @@ android {
     compileSdkVersion sdkVersion
     buildToolsVersion toolsVersion
     defaultConfig {
-        applicationId "mezzari.torres.lucas"
+        applicationId "mezzari.torres.lucas.kotlin_easy_debugger"
         minSdkVersion sdkMinVersion
         targetSdkVersion sdkVersion
         versionCode 1
@@ -38,8 +38,6 @@ dependencies {
     implementation libraries.constraint_layout
 
     //Tests
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     testImplementation libraries.junit
     androidTestImplementation libraries.test_runner
     androidTestImplementation libraries.expresso_core
