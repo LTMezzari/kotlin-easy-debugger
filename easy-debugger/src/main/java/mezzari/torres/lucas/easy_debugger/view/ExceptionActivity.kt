@@ -22,6 +22,8 @@ class ExceptionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_exception)
 
+        title = "Crash Logs"
+
         if (intent.hasExtra("exception")) {
             val exception: Throwable = intent.getSerializableExtra("exception") as Throwable
             val sw = StringWriter()

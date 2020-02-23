@@ -18,6 +18,8 @@ class NetworkLoggerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_network_logger)
 
+        title = "Network Logs"
+
         rvNetworkLogs.apply {
             adapter = this@NetworkLoggerActivity.adapter
             layoutManager = LinearLayoutManager(this@NetworkLoggerActivity, RecyclerView.VERTICAL, false)
