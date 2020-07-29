@@ -1,0 +1,1 @@
+[![](https://jitpack.io/v/LTMezzari/kotlin-easy-debugger.svg)](https://jitpack.io/#LTMezzari/kotlin-easy-debugger)
