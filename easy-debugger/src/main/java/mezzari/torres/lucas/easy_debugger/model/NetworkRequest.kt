@@ -2,6 +2,8 @@ package mezzari.torres.lucas.easy_debugger.model
 
 import okhttp3.Headers
 import okhttp3.RequestBody
+import okio.Buffer
+import kotlin.text.Charsets.UTF_8
 
 /**
  * @author Lucas T. Mezzari
@@ -10,13 +12,5 @@ import okhttp3.RequestBody
 class NetworkRequest (
     val method: String,
     val headers: Headers,
-    val body: RequestBody?
-) {
-    override fun toString(): String {
-        return "{" +
-                "\n\tmethod: " + method +
-                "\n\theaders: " + headers.toString() +
-                "\n\tbody: " + body.toString() +
-                "\n}"
-    }
-}
+    val body: String? = null
+)

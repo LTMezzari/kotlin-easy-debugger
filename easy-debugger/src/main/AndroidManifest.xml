@@ -2,8 +2,31 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="mezzari.torres.lucas.easy_debugger">
 
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
     <application>
-        <activity android:name=".view.ExceptionActivity"></activity>
+        <activity
+            android:name=".view.NetworkLoggerActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".view.ExceptionActivity"
+            android:screenOrientation="portrait"/>
+
+        <service
+            android:name=".service.FloatingDebugViewService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="mezzari.torres.lucas.easy_debugger.library.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_provider" />
+        </provider>
     </application>
 
 </manifest>

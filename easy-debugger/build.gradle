@@ -2,6 +2,10 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'com.github.dcendents.android-maven'
+
+group='com.github.LTMezzari'
+
 android {
     compileSdkVersion sdkVersion
     buildToolsVersion toolsVersion
@@ -36,6 +40,7 @@ dependencies {
     //Android
     implementation libraries.app_compat
     implementation libraries.constraint_layout
+    implementation libraries.recycler_view
 
     //Tests
     testImplementation libraries.junit
@@ -44,7 +49,8 @@ dependencies {
 
     //Retrofit
     implementation libraries.retrofit
+}
 
-    //My Libraries
-    implementation libraries.network
+repositories {
+    mavenCentral()
 }
