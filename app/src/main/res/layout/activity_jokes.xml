@@ -4,10 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".view.LogActivity">
+    tools:context=".view.CepActivity">
 
-    <TextView
-        android:id="@+id/tvLog"
+    <EditText
+        android:id="@+id/tvJokeType"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btnSend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Send"/>
+
 </LinearLayout>

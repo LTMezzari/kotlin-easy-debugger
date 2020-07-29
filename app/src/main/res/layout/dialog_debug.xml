@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="15dp">
+
+    <Spinner
+        android:id="@+id/spUrls"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:entries="@array/array_urls"/>
+
+    <TextView
+        android:id="@+id/tvLogs"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:padding="5dp"
+        android:gravity="start|center"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        android:background="?attr/selectableItemBackground"
+        android:text="See Logs" />
+
+</LinearLayout>

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Kotlin Easy Debugger</string>
+
+    <string-array name="array_urls">
+        <item>https://viacep.com.br/ws/</item>
+        <item>https://official-joke-api.appspot.com/</item>
+    </string-array>
 </resources>

@@ -1,6 +1,7 @@
 package mezzari.torres.lucas
 
 import android.app.Application
+import android.content.Intent
 import mezzari.torres.lucas.easy_debugger.source.EasyDebugger
 import mezzari.torres.lucas.network.NetworkLoggerModule
 import mezzari.torres.lucas.network.source.Network
@@ -14,7 +15,14 @@ import mezzari.torres.lucas.network.source.module.retrofit.GsonConverterModule
 class MyApplication: Application() {
     override fun onCreate() {
         super.onCreate()
-        EasyDebugger.initialize(this)
+
+        EasyDebugger
+            .builder(this)
+            .setOnFloatingViewClickListener {
+                sendOrderedBroadcast(Intent("DEBUG_DIALOG"), null)
+            }
+            .build()
+
         Network.initialize(
             retrofitLevelModules = arrayListOf(GsonConverterModule()),
             okHttpClientLevelModule = arrayListOf(LogModule(), NetworkLoggerModule())
