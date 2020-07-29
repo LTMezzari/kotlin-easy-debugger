@@ -45,7 +45,7 @@ class NetworkLog(
 
     private fun stringifyHeaders(headers: Headers): String {
         var result = ""
-        for (i in 0 until headers.size) {
+        for (i in 0 until headers.size()) {
             result += String.format("%s: %s\n", headers.name(i), headers.value(i))
         }
         return if (result.isNotEmpty()) {

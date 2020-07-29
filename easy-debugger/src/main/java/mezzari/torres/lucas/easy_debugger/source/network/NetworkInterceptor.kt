@@ -4,7 +4,11 @@ import mezzari.torres.lucas.easy_debugger.model.NetworkLog
 import mezzari.torres.lucas.easy_debugger.model.NetworkRequest
 import mezzari.torres.lucas.easy_debugger.model.NetworkResponse
 import okhttp3.Interceptor
+import okhttp3.Request
 import okhttp3.Response
+import okio.Buffer
+import java.nio.charset.Charset
+import kotlin.text.Charsets.UTF_8
 
 /**
  * @author Lucas T. Mezzari
@@ -15,20 +19,60 @@ class NetworkInterceptor: Interceptor {
         val request = chain.request()
         val url = request.url().toString()
 
-        val method = request.method()
-        val body = request.body()
-        val headers = request.headers()
-        val networkRequest = NetworkRequest(method, headers, body)
+        val networkRequest = buildRequestLogs(request)
 
-        val response = chain.proceed(request)
-        val code = response.code()
-        val responseHeaders = request.headers()
-        val responseBody = response.body()
-        val networkResponse = NetworkResponse(code, responseHeaders, responseBody)
+        val response: Response
+        try {
+            response = chain.proceed(request)
 
-        networkLogs += NetworkLog(url, networkRequest, networkResponse)
+            val networkResponse = buildResponseLogs(response)
+
+            networkLogs += NetworkLog(url, networkRequest, networkResponse, response.isSuccessful)
+        } catch (e: Exception) {
+            networkLogs += NetworkLog(url, networkRequest, null, false, e)
+            throw e
+        }
 
         return response
+    }
+
+    private fun buildRequestLogs(request: Request): NetworkRequest {
+        val method = request.method()
+        val headers = request.headers()
+        val requestBody = request.body()
+
+        val body = if (requestBody != null) {
+            val buffer = Buffer()
+            requestBody.writeTo(buffer)
+            val contentType = requestBody.contentType()
+            val charset: Charset = contentType?.charset(UTF_8) ?: UTF_8
+            buffer.readString(charset)
+        } else {
+            null
+        }
+
+        return NetworkRequest(method, headers, body)
+    }
+
+    private fun buildResponseLogs(response: Response): NetworkResponse {
+        val code = response.code()
+        val headers = response.headers()
+        val responseBody = response.body()
+
+        val body = if (responseBody != null) {
+            val source = responseBody.source()
+            source.request(Long.MAX_VALUE)
+            val buffer = source.buffer
+
+            val contentType = responseBody.contentType()
+            val charset: Charset = contentType?.charset(UTF_8) ?: UTF_8
+
+            buffer.clone().readString(charset)
+        } else {
+            null
+        }
+
+        return NetworkResponse(code, headers, body)
     }
 
     companion object {
