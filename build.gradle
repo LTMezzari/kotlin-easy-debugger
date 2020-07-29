@@ -1,25 +1,24 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.3.61'
-
     ext {
         sdkVersion = 29
         sdkMinVersion = 21
         toolsVersion = "29.0.2"
 
         //Common Versions
-        kotlinVersion = "1.3.61"
+        kotlinVersion = "1.3.72"
         androidVersion = "1.1.0"
-        retrofitVersion = "2.7.1"
+        retrofitVersion = "2.9.0"
 
         libraries = [
                 //Gradle
                 gradle_tools: 'com.android.tools.build:gradle:4.0.1',
+                gradle_plugin: 'com.github.dcendents:android-maven-gradle-plugin:2.1',
 
                 //Kotlin
                 kotlin_plugin: "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion",
-                kotlin_jdk: "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.72",
+                kotlin_jdk: "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion",
 
                 //Android
                 app_compat: "androidx.appcompat:appcompat:$androidVersion",
@@ -38,7 +37,8 @@ buildscript {
 
                 //My Libraries
                 easy_debugger: project(':easy-debugger'),
-                network: 'com.github.LTMezzari:kotlin-network:0.8.1'
+                easy_debugger_network: project(':easy-debugger-network'),
+                network: 'com.github.LTMezzari:kotlin-network:0.8.3'
         ]
     }
 
@@ -50,6 +50,7 @@ buildscript {
     dependencies {
         classpath libraries.gradle_tools
         classpath libraries.kotlin_plugin
+        classpath libraries.gradle_plugin
     }
 }
 

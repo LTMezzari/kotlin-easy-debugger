@@ -1,30 +1,30 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'com.github.dcendents.android-maven'
+
+group='com.github.LTMezzari'
+
 android {
-    compileSdkVersion sdkVersion
-    buildToolsVersion toolsVersion
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
     defaultConfig {
-        applicationId "mezzari.torres.lucas.kotlin_easy_debugger"
-        minSdkVersion sdkMinVersion
-        targetSdkVersion sdkVersion
+        minSdkVersion 21
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8
     }
 }
 
@@ -34,8 +34,8 @@ dependencies {
 
     //Android
     implementation libraries.app_compat
-    implementation libraries.android_core
     implementation libraries.constraint_layout
+    implementation libraries.recycler_view
 
     //Tests
     testImplementation libraries.junit
@@ -44,10 +44,12 @@ dependencies {
 
     //Retrofit
     implementation libraries.retrofit
-    implementation libraries.retrofit_gson
 
     //My Libraries
     implementation libraries.easy_debugger
-    implementation libraries.easy_debugger_network
     implementation libraries.network
+}
+
+repositories {
+    mavenCentral()
 }

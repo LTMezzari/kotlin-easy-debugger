@@ -1,4 +1,4 @@
-package mezzari.torres.lucas.network
+package mezzari.torres.lucas.easy_debugger_network
 
 import mezzari.torres.lucas.easy_debugger.model.NetworkLog
 import mezzari.torres.lucas.easy_debugger.model.NetworkRequest
