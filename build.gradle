@@ -15,15 +15,15 @@ buildscript {
 
         libraries = [
                 //Gradle
-                gradle_tools: 'com.android.tools.build:gradle:3.5.3',
+                gradle_tools: 'com.android.tools.build:gradle:4.0.1',
 
                 //Kotlin
                 kotlin_plugin: "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion",
-                kotlin_jdk: "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion",
+                kotlin_jdk: "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.72",
 
                 //Android
                 app_compat: "androidx.appcompat:appcompat:$androidVersion",
-                android_core: "androidx.core:core-ktx:$androidVersion",
+                android_core: "androidx.core:core-ktx:1.3.1",
                 constraint_layout: 'androidx.constraintlayout:constraintlayout:1.1.3',
 
                 //Tests

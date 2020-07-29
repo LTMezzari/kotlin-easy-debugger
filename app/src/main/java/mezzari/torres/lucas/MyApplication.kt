@@ -2,7 +2,7 @@ package mezzari.torres.lucas
 
 import android.app.Application
 import mezzari.torres.lucas.easy_debugger.source.EasyDebugger
-import mezzari.torres.lucas.easy_debugger.source.network.NetworkLoggerModule
+import mezzari.torres.lucas.network.NetworkLoggerModule
 import mezzari.torres.lucas.network.source.Network
 import mezzari.torres.lucas.network.source.module.client.LogModule
 import mezzari.torres.lucas.network.source.module.retrofit.GsonConverterModule

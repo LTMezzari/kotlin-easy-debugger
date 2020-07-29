@@ -44,7 +44,4 @@ dependencies {
 
     //Retrofit
     implementation libraries.retrofit
-
-    //My Libraries
-    implementation libraries.network
 }
