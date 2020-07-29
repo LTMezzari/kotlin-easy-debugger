@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.row_log_collapsed.view.*
 import kotlinx.android.synthetic.main.row_log_content.view.*
 import mezzari.torres.lucas.easy_debugger.R
 import mezzari.torres.lucas.easy_debugger.model.NetworkLog
-import mezzari.torres.lucas.easy_debugger.source.network.NetworkLoggerModule
+import mezzari.torres.lucas.easy_debugger.source.network.NetworkInterceptor
 
 /**
  * @author Lucas T. Mezzari
@@ -22,7 +22,7 @@ internal class NetworkLogAdapter(context: Context): RecyclerView.Adapter<Network
 
     private val inflater = LayoutInflater.from(context)
 
-    private val networkLogs: List<NetworkLog> = NetworkLoggerModule.networkLogs
+    private val networkLogs: List<NetworkLog> = NetworkInterceptor.networkLogs
     private var items: ArrayList<Item> = extractItems()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NetworkLogViewHolder {

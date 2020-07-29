@@ -3,30 +3,27 @@ package mezzari.torres.lucas.easy_debugger.source.network
 import mezzari.torres.lucas.easy_debugger.model.NetworkLog
 import mezzari.torres.lucas.easy_debugger.model.NetworkRequest
 import mezzari.torres.lucas.easy_debugger.model.NetworkResponse
-import mezzari.torres.lucas.network.source.Network
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
 import okio.Buffer
-import java.lang.Exception
 import java.nio.charset.Charset
 import kotlin.text.Charsets.UTF_8
 
 /**
  * @author Lucas T. Mezzari
- * @since 19/02/2020
+ * @since 29/07/2020
  */
-class NetworkLoggerModule: Network.OkHttpClientLevelModule {
-
-    private val interceptor = Interceptor {
-        val request = it.request()
-        val url = request.url.toString()
+class NetworkInterceptor: Interceptor {
+    override fun intercept(chain: Interceptor.Chain): Response {
+        val request = chain.request()
+        val url = request.url().toString()
 
         val networkRequest = buildRequestLogs(request)
 
         val response: Response
         try {
-            response = it.proceed(request)
+            response = chain.proceed(request)
 
             val networkResponse = buildResponseLogs(response)
 
@@ -36,17 +33,13 @@ class NetworkLoggerModule: Network.OkHttpClientLevelModule {
             throw e
         }
 
-        return@Interceptor response
-    }
-
-    override fun onClientBuilderCreated(okHttpClientBuilder: okhttp3.OkHttpClient.Builder) {
-        okHttpClientBuilder.addInterceptor(interceptor)
+        return response
     }
 
     private fun buildRequestLogs(request: Request): NetworkRequest {
-        val method = request.method
-        val headers = request.headers
-        val requestBody = request.body
+        val method = request.method()
+        val headers = request.headers()
+        val requestBody = request.body()
 
         val body = if (requestBody != null) {
             val buffer = Buffer()
@@ -62,9 +55,9 @@ class NetworkLoggerModule: Network.OkHttpClientLevelModule {
     }
 
     private fun buildResponseLogs(response: Response): NetworkResponse {
-        val code = response.code
-        val headers = response.headers
-        val responseBody = response.body
+        val code = response.code()
+        val headers = response.headers()
+        val responseBody = response.body()
 
         val body = if (responseBody != null) {
             val source = responseBody.source()
