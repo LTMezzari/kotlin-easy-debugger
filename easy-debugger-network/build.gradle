@@ -1,20 +1,19 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 
-apply plugin: 'com.github.dcendents.android-maven'
+//apply plugin: 'com.github.dcendents.android-maven'
 
 group='com.github.LTMezzari'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+    namespace = "mezzari.torres.lucas.easy_debugger_network"
+    compileSdkVersion targetVersion
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion minVersion
+        targetSdkVersion targetVersion
+        versionCode vCode
+        versionName vName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -26,28 +25,33 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_21
+        targetCompatibility JavaVersion.VERSION_21
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_21
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation libraries.kotlin_jdk
+    implementation libs.kotlin.jdk
 
     //Android
-    implementation libraries.app_compat
-    implementation libraries.constraint_layout
-    implementation libraries.recycler_view
+    implementation libs.app.compat
 
-    //Tests
-    testImplementation libraries.junit
-    androidTestImplementation libraries.test_runner
-    androidTestImplementation libraries.expresso_core
+    //Test
+    testImplementation libs.junit
+    androidTestImplementation libs.junit.ext
+    androidTestImplementation libs.expresso
 
     //Retrofit
-    implementation libraries.retrofit
+    implementation libs.retrofit
 
     //My Libraries
-    implementation libraries.easy_debugger
-    implementation libraries.network
+    implementation project(":easy-debugger")
+    implementation libs.network
 }
 
 repositories {

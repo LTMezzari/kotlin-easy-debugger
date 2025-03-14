@@ -1,16 +1,16 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+apply plugin: 'version-catalog'
 
 android {
-    compileSdkVersion sdkVersion
-    buildToolsVersion toolsVersion
+    namespace = "mezzari.torres.lucas"
+    compileSdkVersion targetVersion
     defaultConfig {
         applicationId "mezzari.torres.lucas.kotlin_easy_debugger"
-        minSdkVersion sdkMinVersion
-        targetSdkVersion sdkVersion
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion minVersion
+        targetSdkVersion targetVersion
+        versionCode vCode
+        versionName vName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -20,34 +20,33 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_21
+        targetCompatibility JavaVersion.VERSION_21
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8
+        jvmTarget = JavaVersion.VERSION_21
     }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation libraries.kotlin_jdk
+    implementation libs.kotlin.jdk
 
     //Android
-    implementation libraries.app_compat
-    implementation libraries.android_core
-    implementation libraries.constraint_layout
+    implementation libs.app.compat
+    implementation libs.android.core
 
     //Tests
-    testImplementation libraries.junit
-    androidTestImplementation libraries.test_runner
-    androidTestImplementation libraries.expresso_core
+    testImplementation libs.junit
+    androidTestImplementation libs.junit.ext
+    androidTestImplementation libs.expresso
 
     //Retrofit
-    implementation libraries.retrofit
-    implementation libraries.retrofit_gson
+    implementation libs.retrofit
+    implementation libs.retrofit.gson
 
     //My Libraries
-    implementation libraries.easy_debugger
-    implementation libraries.easy_debugger_network
-    implementation libraries.network
+    implementation project(":easy-debugger")
+    implementation project(":easy-debugger-network")
+    implementation libs.network
 }

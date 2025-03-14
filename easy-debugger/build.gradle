@@ -1,19 +1,18 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 
-apply plugin: 'com.github.dcendents.android-maven'
+//apply plugin: 'com.github.dcendents.android-maven'
 
 group='com.github.LTMezzari'
 
 android {
-    compileSdkVersion sdkVersion
-    buildToolsVersion toolsVersion
+    namespace = "mezzari.torres.lucas.easy_debugger"
+    compileSdkVersion targetVersion
     defaultConfig {
-        minSdkVersion sdkMinVersion
-        targetSdkVersion sdkVersion
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion minVersion
+        targetSdkVersion targetVersion
+        versionCode vCode
+        versionName vName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
@@ -25,30 +24,28 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_21
+        targetCompatibility JavaVersion.VERSION_21
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8
+        jvmTarget = JavaVersion.VERSION_21
     }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation libraries.kotlin_jdk
+    implementation libs.kotlin.jdk
 
     //Android
-    implementation libraries.app_compat
-    implementation libraries.constraint_layout
-    implementation libraries.recycler_view
+    implementation libs.app.compat
 
     //Tests
-    testImplementation libraries.junit
-    androidTestImplementation libraries.test_runner
-    androidTestImplementation libraries.expresso_core
+    testImplementation libs.junit
+    androidTestImplementation libs.junit.ext
+    androidTestImplementation libs.expresso
 
     //Retrofit
-    implementation libraries.retrofit
+    implementation libs.retrofit
 }
 
 repositories {

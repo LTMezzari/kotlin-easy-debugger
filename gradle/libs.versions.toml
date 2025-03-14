@@ -1,0 +1,28 @@
+[versions]
+coreKtx = "1.15.0"
+kotlinVersion = "2.1.0"
+retrofitVersion = "2.11.0"
+
+[libraries]
+#Gradle
+gradle-tools = { group = "com.android.tools.build", name = "gradle", version = "8.9.0" }
+
+#Kotlin
+kotlin-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlinVersion" }
+kotlin-jdk = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk7", version.ref = "kotlinVersion" }
+
+#Android
+app-compat = { group = "androidx.appcompat", name = "appcompat", version = "1.7.0" }
+android-core = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+
+#Tests
+junit = { group = "junit", name = "junit", version = "4.13.2" }
+junit-ext = { group = "androidx.test.ext", name = "junit", version = "1.2.1" }
+expresso = { group = "androidx.test.espresso", name = "espresso-core", version = "3.6.1" }
+
+#Retrofit
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofitVersion" }
+retrofit-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofitVersion" }
+
+#My Libraries
+network = { group = "com.github.LTMezzari", name = "kotlin-network", version = "0.8.3" }
