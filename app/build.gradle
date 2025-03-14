@@ -6,6 +6,9 @@ plugins {
 android {
     namespace = "mezzari.torres.lucas"
     compileSdkVersion targetVersion
+    viewBinding {
+        enabled true
+    }
     defaultConfig {
         applicationId "mezzari.torres.lucas.kotlin_easy_debugger"
         minSdkVersion minVersion
@@ -36,6 +39,7 @@ dependencies {
     //Android
     implementation libs.app.compat
     implementation libs.android.core
+    implementation libs.material
 
     //Tests
     testImplementation libs.junit

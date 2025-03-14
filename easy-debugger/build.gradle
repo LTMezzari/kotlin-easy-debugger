@@ -24,6 +24,9 @@ afterEvaluate {
 android {
     namespace = "mezzari.torres.lucas.easy_debugger"
     compileSdkVersion targetVersion
+    viewBinding {
+        enabled true
+    }
     defaultConfig {
         minSdkVersion minVersion
         targetSdkVersion targetVersion
@@ -54,6 +57,7 @@ dependencies {
 
     //Android
     implementation libs.app.compat
+    implementation libs.material
 
     //Tests
     testImplementation libs.junit

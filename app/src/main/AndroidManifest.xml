@@ -12,9 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".view.JokesActivity" />
-        <activity android:name=".view.CepActivity" />
-        <activity android:name=".view.MainActivity">
+        <activity android:name=".view.JokesActivity" android:exported="true"/>
+        <activity android:name=".view.CepActivity" android:exported="true"/>
+        <activity android:name=".view.MainActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

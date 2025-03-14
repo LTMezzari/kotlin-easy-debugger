@@ -7,8 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import androidx.fragment.app.DialogFragment
-import kotlinx.android.synthetic.main.dialog_debug.*
-import mezzari.torres.lucas.R
+import mezzari.torres.lucas.databinding.DialogDebugBinding
 import mezzari.torres.lucas.easy_debugger.view.NetworkLoggerActivity
 import mezzari.torres.lucas.persistence.SessionManager
 
@@ -19,18 +18,23 @@ import mezzari.torres.lucas.persistence.SessionManager
  */
 class DebugDialog : DialogFragment() {
 
+    private lateinit var binding: DialogDebugBinding
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.dialog_debug, container, false)
+        return DialogDebugBinding.inflate(inflater, container, false).let {
+            binding = it
+            return@let it.root
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        spUrls.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        binding.spUrls.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(adapter: AdapterView<*>?) {}
 
             override fun onItemSelected(
@@ -39,12 +43,12 @@ class DebugDialog : DialogFragment() {
                 position: Int,
                 id: Long
             ) {
-                val url = spUrls.getItemAtPosition(position) as? String ?: return
+                val url = binding.spUrls.getItemAtPosition(position) as? String ?: return
                 SessionManager.baseUrl = url
             }
         }
 
-        tvLogs.setOnClickListener {
+        binding.tvLogs.setOnClickListener {
             startActivity(
                 Intent(context, NetworkLoggerActivity::class.java)
             )
