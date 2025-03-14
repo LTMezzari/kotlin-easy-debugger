@@ -2,21 +2,24 @@ package mezzari.torres.lucas.view
 
 import android.os.Bundle
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_cep.*
 import mezzari.torres.lucas.R
+import mezzari.torres.lucas.databinding.ActivityCepBinding
 import mezzari.torres.lucas.generic.BaseActivity
 import mezzari.torres.lucas.network.viacep.ViacepService
 
 class CepActivity : BaseActivity() {
 
+    private lateinit var binding: ActivityCepBinding
+
     private val service = ViacepService()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_cep)
+        binding = ActivityCepBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        btnSend.setOnClickListener {
-            val cep = tvCep.text.toString()
+        binding.btnSend.setOnClickListener {
+            val cep = binding.tvCep.text.toString()
             service.getCep(cep).then {
                 Toast.makeText(this@CepActivity, "Ok", Toast.LENGTH_LONG).show()
                 finish()

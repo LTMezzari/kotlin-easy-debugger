@@ -1,3 +1,0 @@
-include ':easy-debugger-network'
-include ':app', ':easy-debugger'
-rootProject.name='Kotlin Easy Debugger'

@@ -7,9 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.row_log_collapsed.view.*
-import kotlinx.android.synthetic.main.row_log_content.view.*
 import mezzari.torres.lucas.easy_debugger.R
+import mezzari.torres.lucas.easy_debugger.databinding.RowEmptyLogsBinding
+import mezzari.torres.lucas.easy_debugger.databinding.RowLogCollapsedBinding
+import mezzari.torres.lucas.easy_debugger.databinding.RowLogContentBinding
+import mezzari.torres.lucas.easy_debugger.databinding.RowLogFooterBinding
+import mezzari.torres.lucas.easy_debugger.databinding.RowLogHeaderBinding
 import mezzari.torres.lucas.easy_debugger.model.NetworkLog
 import mezzari.torres.lucas.easy_debugger.source.network.NetworkInterceptor
 
@@ -18,31 +21,66 @@ import mezzari.torres.lucas.easy_debugger.source.network.NetworkInterceptor
  * @author lucas.mezzari@operacao.rcadigital.com.br
  * @since 2020-02-20
  */
-internal class NetworkLogAdapter(context: Context): RecyclerView.Adapter<NetworkLogAdapter.NetworkLogViewHolder>() {
+internal class NetworkLogAdapter(context: Context) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val inflater = LayoutInflater.from(context)
 
     private val networkLogs: List<NetworkLog> = NetworkInterceptor.networkLogs
     private var items: ArrayList<Item> = extractItems()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NetworkLogViewHolder {
-        return NetworkLogViewHolder(inflater.inflate(when (viewType) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return when (viewType) {
             VIEW_TYPE_EMPTY -> {
-                R.layout.row_empty_logs
+                NetworkEmptyLogViewHolder(
+                    RowEmptyLogsBinding.inflate(
+                        inflater,
+                        parent,
+                        false
+                    )
+                )
             }
+
             VIEW_TYPE_HEADER -> {
-                R.layout.row_log_header
+                NetworkLogHeaderViewHolder(
+                    RowLogHeaderBinding.inflate(
+                        inflater,
+                        parent,
+                        false
+                    )
+                )
             }
+
             VIEW_TYPE_CONTENT -> {
-                R.layout.row_log_content
+                NetworkLogContentViewHolder(
+                    RowLogContentBinding.inflate(
+                        inflater,
+                        parent,
+                        false
+                    )
+                )
             }
+
             VIEW_TYPE_FOOTER -> {
-                R.layout.row_log_footer
+                NetworkLogFooterViewHolder(
+                    RowLogFooterBinding.inflate(
+                        inflater,
+                        parent,
+                        false
+                    )
+                )
             }
+
             else -> {
-                R.layout.row_log_collapsed
+                NetworkLogCollapsedViewHolder(
+                    RowLogCollapsedBinding.inflate(
+                        inflater,
+                        parent,
+                        false
+                    )
+                )
             }
-        }, parent, false))
+        }
     }
 
     override fun getItemCount(): Int {
@@ -77,20 +115,21 @@ internal class NetworkLogAdapter(context: Context): RecyclerView.Adapter<Network
         }
     }
 
-    override fun onBindViewHolder(holder: NetworkLogViewHolder, position: Int) {
+    override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
         when (getItemViewType(position)) {
             VIEW_TYPE_COLLAPSED -> {
+                val holder = viewHolder as NetworkLogCollapsedViewHolder
                 val headerItem = items[position] as HeaderItem
                 val log = headerItem.networkLog
 
-                holder.itemView.tvUrl.text = log.url
-                holder.itemView.tvMethod.text = log.request.method
-                holder.itemView.tvCode.text = log.response?.code.toString()
+                holder.binding.tvUrl.text = log.url
+                holder.binding.tvMethod.text = log.request.method
+                holder.binding.tvCode.text = log.response?.code.toString()
 
                 if (log.wasSuccessful) {
-                    holder.itemView.tvUrl.background.setTintList(ColorStateList.valueOf(Color.GREEN))
+                    holder.binding.tvUrl.background.setTintList(ColorStateList.valueOf(Color.GREEN))
                 } else {
-                    holder.itemView.tvUrl.background.setTintList(ColorStateList.valueOf(Color.RED))
+                    holder.binding.tvUrl.background.setTintList(ColorStateList.valueOf(Color.RED))
                 }
 
                 holder.itemView.setOnClickListener {
@@ -100,15 +139,16 @@ internal class NetworkLogAdapter(context: Context): RecyclerView.Adapter<Network
             }
 
             VIEW_TYPE_HEADER -> {
+                val holder = viewHolder as NetworkLogHeaderViewHolder
                 val headerItem = items[position] as HeaderItem
                 val log = headerItem.networkLog
 
-                holder.itemView.tvUrl.text = log.url
+                holder.binding.tvUrl.text = log.url
 
                 if (log.wasSuccessful) {
-                    holder.itemView.tvUrl.background.setTintList(ColorStateList.valueOf(Color.GREEN))
+                    holder.binding.tvUrl.background.setTintList(ColorStateList.valueOf(Color.GREEN))
                 } else {
-                    holder.itemView.tvUrl.background.setTintList(ColorStateList.valueOf(Color.RED))
+                    holder.binding.tvUrl.background.setTintList(ColorStateList.valueOf(Color.RED))
                 }
 
                 holder.itemView.setOnClickListener {
@@ -118,24 +158,27 @@ internal class NetworkLogAdapter(context: Context): RecyclerView.Adapter<Network
             }
 
             VIEW_TYPE_CONTENT -> {
+                val holder = viewHolder as NetworkLogContentViewHolder
                 val contentItem = items[position] as ContentItem
                 val log = contentItem.networkLog
 
-                holder.itemView.tvRequest.text = log.stringifyRequest() ?: "There was no Request"
+                holder.binding.tvRequest.text = log.stringifyRequest() ?: "There was no Request"
 
                 if (!log.wasSuccessful && log.response == null) {
-                    holder.itemView.tvResponse.text = log.error?.message ?: "Unknown Error"
+                    holder.binding.tvResponse.text = log.error?.message ?: "Unknown Error"
                 } else {
-                    holder.itemView.tvResponse.text = log.stringifyResponse() ?: "There was no Response"
+                    holder.binding.tvResponse.text =
+                        log.stringifyResponse() ?: "There was no Response"
                 }
             }
 
             VIEW_TYPE_FOOTER -> {
+                val holder = viewHolder as NetworkLogFooterViewHolder
                 val footerItem = items[position] as FooterItem
                 val log = footerItem.networkLog
 
-                holder.itemView.tvMethod.text = log.request.method
-                holder.itemView.tvCode.text = log.response?.code?.toString() ?: "Unknown Error"
+                holder.binding.tvMethod.text = log.request.method
+                holder.binding.tvCode.text = log.response?.code?.toString() ?: "Unknown Error"
             }
         }
     }
@@ -168,7 +211,20 @@ internal class NetworkLogAdapter(context: Context): RecyclerView.Adapter<Network
         }
     }
 
-    internal class NetworkLogViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
+    internal class NetworkEmptyLogViewHolder(val binding: RowEmptyLogsBinding) :
+        RecyclerView.ViewHolder(binding.root)
+
+    internal class NetworkLogHeaderViewHolder(val binding: RowLogHeaderBinding) :
+        RecyclerView.ViewHolder(binding.root)
+
+    internal class NetworkLogContentViewHolder(val binding: RowLogContentBinding) :
+        RecyclerView.ViewHolder(binding.root)
+
+    internal class NetworkLogFooterViewHolder(val binding: RowLogFooterBinding) :
+        RecyclerView.ViewHolder(binding.root)
+
+    internal class NetworkLogCollapsedViewHolder(val binding: RowLogCollapsedBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     internal abstract class Item
 
@@ -177,15 +233,15 @@ internal class NetworkLogAdapter(context: Context): RecyclerView.Adapter<Network
         val content: ContentItem,
         val footer: FooterItem,
         var isExpanded: Boolean = false
-    ): Item()
+    ) : Item()
 
     internal class ContentItem(
         val networkLog: NetworkLog
-    ): Item()
+    ) : Item()
 
     internal class FooterItem(
         val networkLog: NetworkLog
-    ): Item()
+    ) : Item()
 
     companion object {
         const val VIEW_TYPE_EMPTY = 0

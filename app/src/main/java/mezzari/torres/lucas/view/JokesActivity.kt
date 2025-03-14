@@ -3,22 +3,25 @@ package mezzari.torres.lucas.view
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import kotlinx.android.synthetic.main.activity_jokes.*
 import mezzari.torres.lucas.R
+import mezzari.torres.lucas.databinding.ActivityJokesBinding
 import mezzari.torres.lucas.generic.BaseActivity
 import mezzari.torres.lucas.model.Joke
 import mezzari.torres.lucas.network.jokes.JokesService
 
 class JokesActivity : BaseActivity() {
 
+    private lateinit var binding: ActivityJokesBinding
+
     private val service = JokesService()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_jokes)
+        binding = ActivityJokesBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        btnSend.setOnClickListener {
-            val type = tvJokeType.text.toString()
+        binding.btnSend.setOnClickListener {
+            val type = binding.tvJokeType.text.toString()
 
             if (type.isNotEmpty()) {
                 service.getRandomJokeByType(type).then { response ->

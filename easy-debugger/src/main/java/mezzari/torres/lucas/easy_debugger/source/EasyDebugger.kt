@@ -7,7 +7,6 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
-import mezzari.torres.lucas.easy_debugger.BuildConfig
 import java.lang.Exception
 
 /**
@@ -124,9 +123,6 @@ object EasyDebugger {
                 hasPutTheFloatingView = true
                 activity.startService(Intent(activity, configuration.floatingViewService.java))
             } catch (e: Exception) {
-                if (BuildConfig.DEBUG)
-                    e.printStackTrace()
-
                 hasPutTheFloatingView = false
             }
         }

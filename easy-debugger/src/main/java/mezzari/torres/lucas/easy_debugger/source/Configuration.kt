@@ -2,7 +2,6 @@ package mezzari.torres.lucas.easy_debugger.source
 
 import android.app.Application
 import android.view.View
-import mezzari.torres.lucas.easy_debugger.BuildConfig
 import mezzari.torres.lucas.easy_debugger.generic.ExceptionHandler
 import mezzari.torres.lucas.easy_debugger.service.FloatingDebugViewService
 import mezzari.torres.lucas.easy_debugger.source.exception.RedirectExceptionHandler
@@ -15,7 +14,7 @@ import kotlin.reflect.KClass
  */
 class Configuration private constructor() {
 
-    internal var shouldUseDefaultHandler: Boolean = !BuildConfig.DEBUG
+    internal var shouldUseDefaultHandler: Boolean = false
         private set
 
     internal var activityListener: Application.ActivityLifecycleCallbacks? = null
