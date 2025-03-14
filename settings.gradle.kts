@@ -12,11 +12,12 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         maven {
-            url 'https://jitpack.io'
+            url = uri("https://jitpack.io")
         }
     }
 }
 
-include ':easy-debugger-network'
-include ':app', ':easy-debugger'
-rootProject.name='Kotlin Easy Debugger'
+include(":app")
+include(":easy-debugger")
+include(":easy-debugger-network")
+rootProject.name = "Kotlin Easy Debugger"

@@ -26,7 +26,7 @@ class MyApplication: Application() {
         Network.initialize(
             retrofitLevelModules = arrayListOf(GsonConverterModule()),
             okHttpClientLevelModule = arrayListOf(LogModule(),
-                mezzari.torres.lucas.easy_debugger_network.NetworkLoggerModule()
+                NetworkLoggerModule()
             )
         )
     }
