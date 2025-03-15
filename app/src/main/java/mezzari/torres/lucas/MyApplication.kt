@@ -1,7 +1,6 @@
 package mezzari.torres.lucas
 
 import android.app.Application
-import android.content.Intent
 import mezzari.torres.lucas.easy_debugger.source.EasyDebugger
 import mezzari.torres.lucas.easy_debugger_network.NetworkLoggerModule
 import mezzari.torres.lucas.network.source.Network
@@ -18,9 +17,6 @@ class MyApplication: Application() {
 
         EasyDebugger
             .builder(this)
-            .setOnFloatingViewClickListener {
-                sendOrderedBroadcast(Intent("DEBUG_DIALOG"), null)
-            }
             .build()
 
         Network.initialize(

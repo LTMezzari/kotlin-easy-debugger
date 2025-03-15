@@ -7,6 +7,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
+import mezzari.torres.lucas.easy_debugger.exception.DefaultExceptionHandler
 import java.lang.Exception
 
 /**

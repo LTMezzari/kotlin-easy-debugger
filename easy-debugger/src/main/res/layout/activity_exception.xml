@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="1"
-    tools:context=".view.ExceptionActivity">
+    tools:context=".exception.view.ExceptionActivity">
     <TextView
         android:id="@+id/tvException"
         android:layout_width="match_parent"

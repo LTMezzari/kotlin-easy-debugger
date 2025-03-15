@@ -1,6 +1,5 @@
 package mezzari.torres.lucas.easy_debugger.generic
 
-import android.app.Service
 import android.content.Intent
 import android.graphics.PixelFormat
 import android.os.Build
@@ -12,10 +11,9 @@ import android.view.WindowManager
 
 /**
  * @author Lucas T. Mezzari
- * @author lucas.mezzari@operacao.rcadigital.com.br
  * @since 2020-02-20
  */
-abstract class BaseFloatingViewService: Service() {
+internal abstract class BaseFloatingViewService: BaseService() {
 
     private lateinit var floatingView: View
     protected val windowManager: WindowManager by lazy {

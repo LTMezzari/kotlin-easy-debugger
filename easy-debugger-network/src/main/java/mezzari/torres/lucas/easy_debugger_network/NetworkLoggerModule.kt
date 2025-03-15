@@ -1,11 +1,7 @@
 package mezzari.torres.lucas.easy_debugger_network
 
-import mezzari.torres.lucas.easy_debugger.model.NetworkLog
-import mezzari.torres.lucas.easy_debugger.model.NetworkRequest
-import mezzari.torres.lucas.easy_debugger.model.NetworkResponse
-import mezzari.torres.lucas.easy_debugger.source.network.NetworkInterceptor
+import mezzari.torres.lucas.easy_debugger.network.NetworkInterceptor
 import mezzari.torres.lucas.network.source.Network
-import okhttp3.Interceptor
 
 /**
  * @author Lucas T. Mezzari

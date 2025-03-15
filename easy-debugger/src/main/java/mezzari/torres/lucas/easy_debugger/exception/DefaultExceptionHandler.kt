@@ -1,6 +1,7 @@
-package mezzari.torres.lucas.easy_debugger.source
+package mezzari.torres.lucas.easy_debugger.exception
 
-import mezzari.torres.lucas.easy_debugger.generic.ExceptionHandler
+import mezzari.torres.lucas.easy_debugger.source.EasyDebugger
+import mezzari.torres.lucas.easy_debugger.exception.handler.ExceptionHandler
 
 /**
  * @author Lucas T. Mezzari

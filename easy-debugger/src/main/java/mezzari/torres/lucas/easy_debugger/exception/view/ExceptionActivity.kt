@@ -1,17 +1,21 @@
-package mezzari.torres.lucas.easy_debugger.view
+package mezzari.torres.lucas.easy_debugger.exception.view
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import androidx.core.content.FileProvider
 import mezzari.torres.lucas.easy_debugger.databinding.ActivityExceptionBinding
+import mezzari.torres.lucas.easy_debugger.generic.BaseActivity
 import java.io.*
 import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ExceptionActivity : AppCompatActivity() {
+/**
+ * @author Lucas T. Mezzari
+ * @since 20/02/2020
+ **/
+internal class ExceptionActivity : BaseActivity() {
 
     private lateinit var binding: ActivityExceptionBinding
 

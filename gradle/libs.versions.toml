@@ -23,7 +23,7 @@ retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = 
 retrofit-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofitVersion" }
 
 #My Libraries
-network = { group = "com.github.LTMezzari", name = "kotlin-network", version = "0.8.3" }
+network = { group = "com.github.LTMezzari", name = "kotlin-network", version = "0.8.5" }
 
 [bundles]
 

@@ -2,18 +2,18 @@ package mezzari.torres.lucas.easy_debugger.service
 
 import android.view.*
 import android.view.Gravity.*
-import mezzari.torres.lucas.easy_debugger.R
+import androidx.appcompat.app.AppCompatActivity
 import mezzari.torres.lucas.easy_debugger.databinding.LayoutFloatingDebugViewBinding
+import mezzari.torres.lucas.easy_debugger.debug.DebugDialog
 import mezzari.torres.lucas.easy_debugger.generic.BaseFloatingViewService
 import mezzari.torres.lucas.easy_debugger.source.EasyDebugger
 
 
 /**
  * @author Lucas T. Mezzari
- * @author lucas.mezzari@operacao.rcadigital.com.br
  * @since 2020-02-20
  */
-class FloatingDebugViewService : BaseFloatingViewService() {
+internal class FloatingDebugViewService : BaseFloatingViewService() {
 
     private lateinit var binding: LayoutFloatingDebugViewBinding
 
@@ -36,8 +36,14 @@ class FloatingDebugViewService : BaseFloatingViewService() {
 
     override fun onViewCreated(view: View) {
         super.onViewCreated(view)
-        binding.rlDebugContainer.setOnClickListener {
-            EasyDebugger.configuration.onFloatingViewClickListener?.invoke(it)
+        binding.rlDebugContainer.setOnClickListener{
+            val listener = EasyDebugger.configuration.onFloatingViewClickListener
+            if (listener != null) {
+                listener.invoke(it)
+                return@setOnClickListener
+            }
+            val activity = EasyDebugger.lastStartedActivity as? AppCompatActivity ?: return@setOnClickListener
+            DebugDialog().show(activity.supportFragmentManager, DebugDialog::class.java.name)
         }
     }
 }

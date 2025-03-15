@@ -1,11 +1,10 @@
-package mezzari.torres.lucas.easy_debugger.source.exception
+package mezzari.torres.lucas.easy_debugger.exception.handler
 
 import android.app.Activity
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import mezzari.torres.lucas.easy_debugger.generic.ExceptionHandler
 import kotlin.reflect.KClass
 import kotlin.system.exitProcess
 

@@ -1,4 +1,4 @@
-package mezzari.torres.lucas.easy_debugger.generic
+package mezzari.torres.lucas.easy_debugger.exception.handler
 
 import android.app.Activity
 

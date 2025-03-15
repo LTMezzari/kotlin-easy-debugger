@@ -13,3 +13,7 @@ ext {
     set("kotlinJvmVersion", "21")
     set("jvmVersion", JavaVersion.VERSION_21)
 }
+
+tasks.register("clean", Delete::class) {
+    delete(rootProject.buildDir)
+}

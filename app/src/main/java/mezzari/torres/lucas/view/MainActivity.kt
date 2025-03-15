@@ -6,6 +6,10 @@ import mezzari.torres.lucas.databinding.ActivityMainBinding
 import mezzari.torres.lucas.generic.BaseActivity
 import java.lang.RuntimeException
 
+/**
+ * @author Lucas T. Mezzari
+ * @since 21/02/2020
+ **/
 class MainActivity : BaseActivity() {
 
     private lateinit var binding: ActivityMainBinding

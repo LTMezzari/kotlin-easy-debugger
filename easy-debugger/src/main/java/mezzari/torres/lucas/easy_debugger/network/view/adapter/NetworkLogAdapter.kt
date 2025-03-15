@@ -1,20 +1,18 @@
-package mezzari.torres.lucas.easy_debugger.adapter
+package mezzari.torres.lucas.easy_debugger.network.view.adapter
 
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import mezzari.torres.lucas.easy_debugger.R
 import mezzari.torres.lucas.easy_debugger.databinding.RowEmptyLogsBinding
 import mezzari.torres.lucas.easy_debugger.databinding.RowLogCollapsedBinding
 import mezzari.torres.lucas.easy_debugger.databinding.RowLogContentBinding
 import mezzari.torres.lucas.easy_debugger.databinding.RowLogFooterBinding
 import mezzari.torres.lucas.easy_debugger.databinding.RowLogHeaderBinding
-import mezzari.torres.lucas.easy_debugger.model.NetworkLog
-import mezzari.torres.lucas.easy_debugger.source.network.NetworkInterceptor
+import mezzari.torres.lucas.easy_debugger.network.model.NetworkLog
+import mezzari.torres.lucas.easy_debugger.network.NetworkInterceptor
 
 /**
  * @author Lucas T. Mezzari

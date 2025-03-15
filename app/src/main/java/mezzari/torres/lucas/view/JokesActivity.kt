@@ -3,7 +3,6 @@ package mezzari.torres.lucas.view
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import mezzari.torres.lucas.R
 import mezzari.torres.lucas.databinding.ActivityJokesBinding
 import mezzari.torres.lucas.generic.BaseActivity
 import mezzari.torres.lucas.model.Joke

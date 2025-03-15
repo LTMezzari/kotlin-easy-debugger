@@ -1,6 +1,5 @@
 package mezzari.torres.lucas.view
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import androidx.fragment.app.DialogFragment
 import mezzari.torres.lucas.databinding.DialogDebugBinding
-import mezzari.torres.lucas.easy_debugger.view.NetworkLoggerActivity
 import mezzari.torres.lucas.persistence.SessionManager
 
 /**
@@ -16,7 +14,7 @@ import mezzari.torres.lucas.persistence.SessionManager
  * @author lucas.mezzari@operacao.rcadigital.com.br
  * @since 2020-02-21
  */
-class DebugDialog : DialogFragment() {
+class AppDebugDialog : DialogFragment() {
 
     private lateinit var binding: DialogDebugBinding
 
@@ -24,7 +22,7 @@ class DebugDialog : DialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         return DialogDebugBinding.inflate(inflater, container, false).let {
             binding = it
             return@let it.root
@@ -46,13 +44,6 @@ class DebugDialog : DialogFragment() {
                 val url = binding.spUrls.getItemAtPosition(position) as? String ?: return
                 SessionManager.baseUrl = url
             }
-        }
-
-        binding.tvLogs.setOnClickListener {
-            startActivity(
-                Intent(context, NetworkLoggerActivity::class.java)
-            )
-            dismiss()
         }
     }
 }

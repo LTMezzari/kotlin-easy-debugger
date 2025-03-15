@@ -1,4 +1,4 @@
-package mezzari.torres.lucas.easy_debugger.model
+package mezzari.torres.lucas.easy_debugger.network.model
 
 import okhttp3.Headers
 import org.json.JSONObject

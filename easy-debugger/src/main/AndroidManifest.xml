@@ -5,11 +5,11 @@
 
     <application>
         <activity
-            android:name=".view.NetworkLoggerActivity"
+            android:name=".network.view.NetworkLoggerActivity"
             android:screenOrientation="portrait"
             android:exported="true"/>
         <activity
-            android:name=".view.ExceptionActivity"
+            android:name=".exception.view.ExceptionActivity"
             android:screenOrientation="portrait"
             android:exported="true"/>
 
