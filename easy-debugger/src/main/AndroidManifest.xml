@@ -5,13 +5,14 @@
 
     <application>
         <activity
+            android:name=".logs.view.LogActivity"
+            android:exported="true" />
+        <activity
             android:name=".network.view.NetworkLoggerActivity"
-            android:screenOrientation="portrait"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".exception.view.ExceptionActivity"
-            android:screenOrientation="portrait"
-            android:exported="true"/>
+            android:exported="true" />
 
         <service
             android:name=".service.FloatingDebugViewService"

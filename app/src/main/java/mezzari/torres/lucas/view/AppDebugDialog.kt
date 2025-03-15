@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import androidx.fragment.app.DialogFragment
-import mezzari.torres.lucas.databinding.DialogDebugBinding
+import mezzari.torres.lucas.databinding.DialogAppDebugBinding
 import mezzari.torres.lucas.persistence.SessionManager
 
 /**
@@ -16,14 +16,14 @@ import mezzari.torres.lucas.persistence.SessionManager
  */
 class AppDebugDialog : DialogFragment() {
 
-    private lateinit var binding: DialogDebugBinding
+    private lateinit var binding: DialogAppDebugBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return DialogDebugBinding.inflate(inflater, container, false).let {
+        return DialogAppDebugBinding.inflate(inflater, container, false).let {
             binding = it
             return@let it.root
         }

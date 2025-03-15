@@ -3,11 +3,17 @@ package mezzari.torres.lucas.easy_debugger.source
 import android.app.Application
 import android.content.Intent
 import android.view.View
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import mezzari.torres.lucas.easy_debugger.debug.model.DebugOption
 import mezzari.torres.lucas.easy_debugger.exception.handler.ExceptionHandler
 import mezzari.torres.lucas.easy_debugger.service.FloatingDebugViewService
 import mezzari.torres.lucas.easy_debugger.exception.handler.RedirectExceptionHandler
 import mezzari.torres.lucas.easy_debugger.exception.view.ExceptionActivity
+import mezzari.torres.lucas.easy_debugger.interfaces.AppDispatcher
+import mezzari.torres.lucas.easy_debugger.logs.listener.LogListener
+import mezzari.torres.lucas.easy_debugger.logs.listener.LogListenerImpl
+import mezzari.torres.lucas.easy_debugger.logs.view.LogActivity
 import mezzari.torres.lucas.easy_debugger.network.view.NetworkLoggerActivity
 import kotlin.reflect.KClass
 
@@ -16,6 +22,13 @@ import kotlin.reflect.KClass
  * @since 19/02/2020
  */
 class Configuration private constructor() {
+
+    private var appDispatcher: AppDispatcher = object : AppDispatcher {
+        override val main: CoroutineDispatcher
+            get() = Dispatchers.Main
+        override val io: CoroutineDispatcher
+            get() = Dispatchers.IO
+    }
 
     internal var shouldUseDefaultHandler: Boolean = false
         private set
@@ -40,7 +53,13 @@ class Configuration private constructor() {
         DebugOption("Network Logs") { context ->
             context.startActivity(Intent(context, NetworkLoggerActivity::class.java))
         },
+        DebugOption("App Logs") { context ->
+            context.startActivity(Intent(context, LogActivity::class.java))
+        },
     )
+        private set
+
+    internal var logListener: LogListener = LogListenerImpl(appDispatcher)
         private set
 
     class Builder {
@@ -78,6 +97,11 @@ class Configuration private constructor() {
 
         fun setDebugOptions(debugOptions: List<DebugOption>): Builder {
             configuration.debugOptions = debugOptions
+            return this
+        }
+
+        fun setLogListener(logListener: LogListener): Builder {
+            configuration.logListener = logListener
             return this
         }
 

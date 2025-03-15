@@ -17,6 +17,7 @@ class MyApplication: Application() {
 
         EasyDebugger
             .builder(this)
+            .setFloatingViewEnable(false)
             .build()
 
         Network.initialize(

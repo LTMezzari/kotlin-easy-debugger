@@ -35,6 +35,7 @@ object EasyDebugger {
         configuration: Configuration
     ) {
         this.configuration = configuration
+        configuration.logListener.startListening()
         setupActivityListener(application, configuration)
         setupExceptionHandler(configuration)
     }
