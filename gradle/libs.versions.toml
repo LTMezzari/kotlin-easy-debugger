@@ -1,8 +1,9 @@
 [versions]
 gradleplugin = "8.9.0"
 coreKtx = "1.15.0"
-kotlinVersion = "2.1.0"
+kotlinVersion = "2.1.10"
 retrofitVersion = "2.11.0"
+navigationVersion = "2.8.9"
 
 [libraries]
 #Kotlin
@@ -12,6 +13,10 @@ kotlin-jdk = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk7", vers
 app-compat = { group = "androidx.appcompat", name = "appcompat", version = "1.7.0" }
 android-core = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 material = { module = "com.google.android.material:material", version = "1.12.0" }
+
+#Navigation
+navigation-fragment = {group = "androidx.navigation", name = "navigation-fragment", version.ref = "navigationVersion" }
+navigation-ui = {group = "androidx.navigation", name = "navigation-ui", version.ref = "navigationVersion" }
 
 #Tests
 junit = { group = "junit", name = "junit", version = "4.13.2" }

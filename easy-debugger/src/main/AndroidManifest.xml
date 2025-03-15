@@ -6,13 +6,16 @@
     <application>
         <activity
             android:name=".logs.view.LogActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/DebugAppTheme" />
         <activity
             android:name=".network.view.NetworkLoggerActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/DebugAppTheme" />
         <activity
             android:name=".exception.view.ExceptionActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/DebugAppTheme" />
 
         <service
             android:name=".service.FloatingDebugViewService"

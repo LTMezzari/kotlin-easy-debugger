@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_main"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="mezzari.torres.lucas.view.main.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_jokesFragment"
+            app:destination="@id/jokesFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_cepFragment"
+            app:destination="@id/cepFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/jokesFragment"
+        android:name="mezzari.torres.lucas.view.jokes.JokesFragment"
+        android:label="fragment_jokes"
+        tools:layout="@layout/fragment_jokes" />
+    <fragment
+        android:id="@+id/cepFragment"
+        android:name="mezzari.torres.lucas.view.cep.CepFragment"
+        android:label="fragment_cep"
+        tools:layout="@layout/fragment_cep" />
+</navigation>

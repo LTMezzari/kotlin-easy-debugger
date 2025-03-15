@@ -34,9 +34,6 @@ android {
     }
     defaultConfig {
         minSdk = minVersion
-//        targetSdk = targetVersion
-//        versionCode = vCode
-//        versionName = vName
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

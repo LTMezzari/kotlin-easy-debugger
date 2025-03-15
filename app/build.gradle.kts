@@ -51,6 +51,10 @@ dependencies {
     implementation(libs.android.core)
     implementation(libs.material)
 
+    //Navigation
+    implementation(libs.navigation.ui)
+    implementation(libs.navigation.fragment)
+
     //Tests
     testImplementation(libs.junit)
     androidTestImplementation(libs.junit.ext)
