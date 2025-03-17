@@ -12,7 +12,7 @@ import mezzari.torres.lucas.easy_debugger.databinding.RowLogContentBinding
 import mezzari.torres.lucas.easy_debugger.databinding.RowLogFooterBinding
 import mezzari.torres.lucas.easy_debugger.databinding.RowLogHeaderBinding
 import mezzari.torres.lucas.easy_debugger.network.model.NetworkLog
-import mezzari.torres.lucas.easy_debugger.network.NetworkInterceptor
+import mezzari.torres.lucas.easy_debugger.network.interceptor.NetworkInterceptor
 
 /**
  * @author Lucas T. Mezzari

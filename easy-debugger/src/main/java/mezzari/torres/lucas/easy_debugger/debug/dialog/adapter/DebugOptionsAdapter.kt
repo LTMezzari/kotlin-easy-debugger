@@ -1,12 +1,13 @@
-package mezzari.torres.lucas.easy_debugger.debug.adapter
+package mezzari.torres.lucas.easy_debugger.debug.dialog.adapter
 
+import android.R
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import mezzari.torres.lucas.easy_debugger.debug.model.DebugOption
+import mezzari.torres.lucas.easy_debugger.debug.dialog.model.DebugOption
 
 /**
  * @author Lucas T. Mezzari
@@ -24,7 +25,7 @@ internal class DebugOptionsAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DebugOptionsViewHolder {
         return DebugOptionsViewHolder(
             inflater.inflate(
-                android.R.layout.simple_list_item_1,
+                R.layout.simple_list_item_1,
                 parent,
                 false
             )

@@ -8,7 +8,7 @@ import kotlinx.coroutines.launch
 import mezzari.torres.lucas.easy_debugger.databinding.ActivityLogBinding
 import mezzari.torres.lucas.easy_debugger.generic.BaseActivity
 import mezzari.torres.lucas.easy_debugger.logs.view.adapter.LogAdapter
-import mezzari.torres.lucas.easy_debugger.source.EasyDebugger
+import mezzari.torres.lucas.easy_debugger.EasyDebugger
 
 /**
  * @author Lucas T. Mezzari
@@ -31,8 +31,7 @@ internal class LogActivity : BaseActivity() {
         binding.rvLogs.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
 
         lifecycleScope.launch {
-//            EasyDebugger.configuration.logListener.startListening()
-            EasyDebugger.configuration.logListener.getLogs()?.collect {
+            EasyDebugger.instance.logListener.getLogs()?.collect {
                 adapter.addLog(it)
             }
         }

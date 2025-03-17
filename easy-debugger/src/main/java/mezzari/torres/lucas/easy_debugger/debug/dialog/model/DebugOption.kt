@@ -1,4 +1,4 @@
-package mezzari.torres.lucas.easy_debugger.debug.model
+package mezzari.torres.lucas.easy_debugger.debug.dialog.model
 
 import android.content.Context
 

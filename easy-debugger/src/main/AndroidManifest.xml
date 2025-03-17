@@ -18,7 +18,7 @@
             android:theme="@style/DebugAppTheme" />
 
         <service
-            android:name=".service.FloatingDebugViewService"
+            android:name=".debug.service.FloatingDebugViewService"
             android:enabled="true"
             android:exported="false" />
 

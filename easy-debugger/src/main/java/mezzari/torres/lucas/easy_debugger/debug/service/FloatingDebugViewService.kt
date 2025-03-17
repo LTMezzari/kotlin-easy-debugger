@@ -1,12 +1,14 @@
-package mezzari.torres.lucas.easy_debugger.service
+package mezzari.torres.lucas.easy_debugger.debug.service
 
 import android.view.*
 import android.view.Gravity.*
 import androidx.appcompat.app.AppCompatActivity
 import mezzari.torres.lucas.easy_debugger.databinding.LayoutFloatingDebugViewBinding
-import mezzari.torres.lucas.easy_debugger.debug.DebugDialog
+import mezzari.torres.lucas.easy_debugger.debug.dialog.DebugDialog
 import mezzari.torres.lucas.easy_debugger.generic.BaseFloatingViewService
-import mezzari.torres.lucas.easy_debugger.source.EasyDebugger
+import mezzari.torres.lucas.easy_debugger.EasyDebugger
+import mezzari.torres.lucas.easy_debugger.debug.FloatingDebugViewModule
+import mezzari.torres.lucas.easy_debugger.navigation.ActivityNavigationModule
 
 
 /**
@@ -36,14 +38,17 @@ internal class FloatingDebugViewService : BaseFloatingViewService() {
 
     override fun onViewCreated(view: View) {
         super.onViewCreated(view)
-        binding.rlDebugContainer.setOnClickListener{
-            val listener = EasyDebugger.configuration.onFloatingViewClickListener
-            if (listener != null) {
-                listener.invoke(it)
-                return@setOnClickListener
-            }
-            val activity = EasyDebugger.lastStartedActivity as? AppCompatActivity ?: return@setOnClickListener
-            DebugDialog().show(activity.supportFragmentManager, DebugDialog::class.java.name)
+        binding.rlDebugContainer.setOnClickListener {
+            val debugger = EasyDebugger.instance
+            val module =
+                debugger.getModuleByType<FloatingDebugViewModule>() ?: return@setOnClickListener
+            val activity =
+                module.currentActivity as? AppCompatActivity
+                    ?: return@setOnClickListener
+            DebugDialog(debugger.debugOptions).show(
+                activity.supportFragmentManager,
+                DebugDialog::class.java.name
+            )
         }
     }
 }
