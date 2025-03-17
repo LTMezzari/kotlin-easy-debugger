@@ -1,17 +1,17 @@
-package mezzari.torres.lucas.easy_debugger.network.view
+package mezzari.torres.lucas.easy_debugger_network.view
 
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import mezzari.torres.lucas.easy_debugger.network.view.adapter.NetworkLogAdapter
+import mezzari.torres.lucas.easy_debugger_network.view.adapter.NetworkLogAdapter
 import mezzari.torres.lucas.easy_debugger.databinding.ActivityNetworkLoggerBinding
-import mezzari.torres.lucas.easy_debugger.generic.BaseActivity
 
 /**
  * @author Lucas T. Mezzari
  * @since 21/02/2020
  **/
-internal class NetworkLoggerActivity : BaseActivity() {
+internal class NetworkLoggerActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityNetworkLoggerBinding
 

@@ -1,11 +1,10 @@
-package mezzari.torres.lucas.easy_debugger.network
+package mezzari.torres.lucas.easy_debugger_network
 
 import android.app.Application
 import android.content.Intent
 import mezzari.torres.lucas.easy_debugger.EasyDebugger
 import mezzari.torres.lucas.easy_debugger.debug.dialog.model.DebugOption
 import mezzari.torres.lucas.easy_debugger.interfaces.DebuggerModule
-import mezzari.torres.lucas.easy_debugger.network.view.NetworkLoggerActivity
 
 /**
  * @author Lucas T. Mezzari
@@ -16,7 +15,7 @@ class NetworkModule : DebuggerModule {
 
     override fun onCreateDebugOptions(options: ArrayList<DebugOption>) {
         options.add(DebugOption("Network Logs") { context ->
-            context.startActivity(Intent(context, NetworkLoggerActivity::class.java))
+            context.startActivity(Intent(context, mezzari.torres.lucas.easy_debugger_network.view.NetworkLoggerActivity::class.java))
         })
     }
 }

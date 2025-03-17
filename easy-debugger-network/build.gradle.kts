@@ -30,11 +30,12 @@ android {
     namespace = "mezzari.torres.lucas.easy_debugger_network"
     compileSdkVersion(targetVersion)
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     defaultConfig {
         minSdk = minVersion
-//        targetSdk = targetVersion
-//        versionCode = vCode
-//        versionName = vName
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -62,6 +63,7 @@ dependencies {
 
     //Android
     implementation(libs.app.compat)
+    implementation(libs.material)
 
     //Test
     testImplementation(libs.junit)

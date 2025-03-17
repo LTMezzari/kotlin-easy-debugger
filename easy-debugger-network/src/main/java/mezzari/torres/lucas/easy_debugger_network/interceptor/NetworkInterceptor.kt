@@ -1,8 +1,8 @@
-package mezzari.torres.lucas.easy_debugger.network.interceptor
+package mezzari.torres.lucas.easy_debugger_network.interceptor
 
-import mezzari.torres.lucas.easy_debugger.network.model.NetworkLog
-import mezzari.torres.lucas.easy_debugger.network.model.NetworkRequest
-import mezzari.torres.lucas.easy_debugger.network.model.NetworkResponse
+import mezzari.torres.lucas.easy_debugger_network.model.NetworkLog
+import mezzari.torres.lucas.easy_debugger_network.model.NetworkRequest
+import mezzari.torres.lucas.easy_debugger_network.model.NetworkResponse
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
@@ -14,10 +14,10 @@ import kotlin.text.Charsets.UTF_8
  * @author Lucas T. Mezzari
  * @since 29/07/2020
  */
-class NetworkInterceptor: Interceptor {
+class NetworkInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
-        val url = request.url().toString()
+        val url = request.url.toUrl().toString()
 
         val networkRequest = buildRequestLogs(request)
 
@@ -37,9 +37,9 @@ class NetworkInterceptor: Interceptor {
     }
 
     private fun buildRequestLogs(request: Request): NetworkRequest {
-        val method = request.method()
-        val headers = request.headers()
-        val requestBody = request.body()
+        val method = request.method
+        val headers = request.headers
+        val requestBody = request.body
 
         val body = if (requestBody != null) {
             val buffer = Buffer()
@@ -55,9 +55,9 @@ class NetworkInterceptor: Interceptor {
     }
 
     private fun buildResponseLogs(response: Response): NetworkResponse {
-        val code = response.code()
-        val headers = response.headers()
-        val responseBody = response.body()
+        val code = response.code
+        val headers = response.headers
+        val responseBody = response.body
 
         val body = if (responseBody != null) {
             val source = responseBody.source()

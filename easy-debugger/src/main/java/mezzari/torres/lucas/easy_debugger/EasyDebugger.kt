@@ -15,7 +15,6 @@ import mezzari.torres.lucas.easy_debugger.logs.LogModule
 import mezzari.torres.lucas.easy_debugger.logs.listener.LogListener
 import mezzari.torres.lucas.easy_debugger.logs.listener.LogListenerImpl
 import mezzari.torres.lucas.easy_debugger.navigation.ActivityNavigationModule
-import mezzari.torres.lucas.easy_debugger.network.NetworkModule
 import mezzari.torres.lucas.easy_debugger.settings.SettingsModule
 import kotlin.reflect.KClass
 

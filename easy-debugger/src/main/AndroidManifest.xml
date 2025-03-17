@@ -9,7 +9,7 @@
             android:exported="true"
             android:theme="@style/DebugAppTheme" />
         <activity
-            android:name=".network.view.NetworkLoggerActivity"
+            android:name="mezzari.torres.lucas.easy_debugger_network.view.NetworkLoggerActivity"
             android:exported="true"
             android:theme="@style/DebugAppTheme" />
         <activity

@@ -1,4 +1,4 @@
-package mezzari.torres.lucas.easy_debugger.network.model
+package mezzari.torres.lucas.easy_debugger_network.model
 
 import okhttp3.Headers
 import org.json.JSONObject
@@ -45,7 +45,7 @@ class NetworkLog(
 
     private fun stringifyHeaders(headers: Headers): String {
         var result = ""
-        for (i in 0 until headers.size()) {
+        for (i in 0 until headers.size) {
             result += String.format("%s: %s\n", headers.name(i), headers.value(i))
         }
         return if (result.isNotEmpty()) {

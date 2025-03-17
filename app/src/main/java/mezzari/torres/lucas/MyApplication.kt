@@ -2,8 +2,9 @@ package mezzari.torres.lucas
 
 import android.app.Application
 import mezzari.torres.lucas.easy_debugger.EasyDebugger.Companion.setupDebugger
-import mezzari.torres.lucas.easy_debugger.network.NetworkModule
-import mezzari.torres.lucas.easy_debugger_network.NetworkLoggerModule
+import mezzari.torres.lucas.easy_debugger_network.NetworkModule
+import mezzari.torres.lucas.easy_debugger_network.network.NetworkLoggerModule
+import mezzari.torres.lucas.module.NetworkOptionsModule
 import mezzari.torres.lucas.network.source.Network
 import mezzari.torres.lucas.network.source.module.client.LogModule
 import mezzari.torres.lucas.network.source.module.retrofit.GsonConverterModule
@@ -19,13 +20,14 @@ class MyApplication : Application() {
         setupDebugger {
             setApplication(this@MyApplication)
             addModule(NetworkModule())
+            addModule(NetworkOptionsModule())
         }
 
         Network.initialize(
             retrofitLevelModules = arrayListOf(GsonConverterModule()),
             okHttpClientLevelModule = arrayListOf(
                 LogModule(),
-                NetworkLoggerModule()
+                NetworkLoggerModule(),
             )
         )
     }

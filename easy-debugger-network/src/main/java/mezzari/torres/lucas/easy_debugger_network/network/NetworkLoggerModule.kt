@@ -1,6 +1,6 @@
-package mezzari.torres.lucas.easy_debugger_network
+package mezzari.torres.lucas.easy_debugger_network.network
 
-import mezzari.torres.lucas.easy_debugger.network.interceptor.NetworkInterceptor
+import mezzari.torres.lucas.easy_debugger_network.interceptor.NetworkInterceptor
 import mezzari.torres.lucas.network.source.Network
 
 /**

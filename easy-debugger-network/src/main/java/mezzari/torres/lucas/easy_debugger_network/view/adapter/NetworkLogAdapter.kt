@@ -1,4 +1,4 @@
-package mezzari.torres.lucas.easy_debugger.network.view.adapter
+package mezzari.torres.lucas.easy_debugger_network.view.adapter
 
 import android.content.Context
 import android.content.res.ColorStateList
@@ -11,8 +11,8 @@ import mezzari.torres.lucas.easy_debugger.databinding.RowLogCollapsedBinding
 import mezzari.torres.lucas.easy_debugger.databinding.RowLogContentBinding
 import mezzari.torres.lucas.easy_debugger.databinding.RowLogFooterBinding
 import mezzari.torres.lucas.easy_debugger.databinding.RowLogHeaderBinding
-import mezzari.torres.lucas.easy_debugger.network.model.NetworkLog
-import mezzari.torres.lucas.easy_debugger.network.interceptor.NetworkInterceptor
+import mezzari.torres.lucas.easy_debugger_network.model.NetworkLog
+import mezzari.torres.lucas.easy_debugger_network.interceptor.NetworkInterceptor
 
 /**
  * @author Lucas T. Mezzari
