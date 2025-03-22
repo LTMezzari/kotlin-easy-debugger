@@ -2,6 +2,7 @@ package mezzari.torres.lucas
 
 import android.app.Application
 import mezzari.torres.lucas.easy_debugger.EasyDebugger.Companion.setupDebugger
+import mezzari.torres.lucas.easy_debugger.print.PrintModule
 import mezzari.torres.lucas.easy_debugger_network.NetworkModule
 import mezzari.torres.lucas.easy_debugger_network.network.NetworkLoggerModule
 import mezzari.torres.lucas.module.NetworkOptionsModule
@@ -21,6 +22,7 @@ class MyApplication : Application() {
             setApplication(this@MyApplication)
             addModule(NetworkModule())
             addModule(NetworkOptionsModule())
+            addModule(PrintModule())
         }
 
         Network.initialize(

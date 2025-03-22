@@ -9,11 +9,11 @@
             android:exported="true"
             android:theme="@style/DebugAppTheme" />
         <activity
-            android:name="mezzari.torres.lucas.easy_debugger_network.view.NetworkLoggerActivity"
+            android:name=".exception.view.ExceptionActivity"
             android:exported="true"
             android:theme="@style/DebugAppTheme" />
         <activity
-            android:name=".exception.view.ExceptionActivity"
+            android:name=".navigation.view.NavigationStackActivity"
             android:exported="true"
             android:theme="@style/DebugAppTheme" />
 

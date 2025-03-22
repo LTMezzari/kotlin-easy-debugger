@@ -16,7 +16,7 @@ internal class ActivityNavigationListener(
     private val internalListeners: List<Application.ActivityLifecycleCallbacks> = listOf(),
 ) : Application.ActivityLifecycleCallbacks {
 
-    private val stack = ActivityNavigationStack()
+    val stack = ActivityNavigationStack()
 
     val currentActivity: ActivityWrapper? get() = stack.getCurrentResumedActivity()
 

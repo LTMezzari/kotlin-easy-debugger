@@ -24,7 +24,7 @@ data class ActivityNavigationStack(
     }
 
     fun getCurrentResumedActivity(): ActivityWrapper? {
-        return activities.firstOrNull { it.state == Lifecycle.State.RESUMED && it.activity.get() != null }
+        return activities.firstOrNull { it.state == Lifecycle.State.RESUMED && it.isReferenceActive }
     }
 
     fun updateActivityState(activity: Activity, state: Lifecycle.State) {

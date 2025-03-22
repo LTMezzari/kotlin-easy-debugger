@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import mezzari.torres.lucas.easy_debugger_network.databinding.ActivityNetworkLoggerBinding
 import mezzari.torres.lucas.easy_debugger_network.view.adapter.NetworkLogAdapter
-import mezzari.torres.lucas.easy_debugger.databinding.ActivityNetworkLoggerBinding
 
 /**
  * @author Lucas T. Mezzari

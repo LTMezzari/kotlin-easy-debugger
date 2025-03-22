@@ -1,2 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application>
+        <activity
+            android:name="mezzari.torres.lucas.easy_debugger_network.view.NetworkLoggerActivity"
+            android:exported="true"
+            android:theme="@style/DebugAppTheme" />
+    </application>
 </manifest>
