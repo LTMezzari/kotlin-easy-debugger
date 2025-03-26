@@ -4,11 +4,10 @@ import android.view.*
 import android.view.Gravity.*
 import androidx.appcompat.app.AppCompatActivity
 import mezzari.torres.lucas.easy_debugger.databinding.LayoutFloatingDebugViewBinding
-import mezzari.torres.lucas.easy_debugger.debug.dialog.DebugDialog
-import mezzari.torres.lucas.easy_debugger.generic.BaseFloatingViewService
+import mezzari.torres.lucas.easy_debugger.debug.view.dialog.DebugDialog
+import mezzari.torres.lucas.core.generic.BaseFloatingViewService
 import mezzari.torres.lucas.easy_debugger.EasyDebugger
-import mezzari.torres.lucas.easy_debugger.debug.FloatingDebugViewModule
-import mezzari.torres.lucas.easy_debugger.navigation.ActivityNavigationModule
+import mezzari.torres.lucas.easy_debugger.debug.DebugModule
 
 
 /**
@@ -41,7 +40,7 @@ internal class FloatingDebugViewService : BaseFloatingViewService() {
         binding.rlDebugContainer.setOnClickListener {
             val debugger = EasyDebugger.instance
             val module =
-                debugger.getModuleByType<FloatingDebugViewModule>() ?: return@setOnClickListener
+                debugger.getModuleByType<DebugModule>() ?: return@setOnClickListener
             val activity =
                 module.currentActivity as? AppCompatActivity
                     ?: return@setOnClickListener

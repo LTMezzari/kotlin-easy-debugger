@@ -5,20 +5,21 @@
 
     <application>
         <activity
-            android:name=".logs.view.LogActivity"
-            android:exported="true"
-            android:theme="@style/DebugAppTheme" />
-        <activity
             android:name=".exception.view.ExceptionActivity"
             android:exported="true"
             android:theme="@style/DebugAppTheme" />
         <activity
-            android:name=".navigation.view.NavigationStackActivity"
+            android:name=".debug.view.DebugActivity"
             android:exported="true"
             android:theme="@style/DebugAppTheme" />
 
         <service
             android:name=".debug.service.FloatingDebugViewService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <service
+            android:name=".debug.service.DebugActivityService"
             android:enabled="true"
             android:exported="false" />
 

@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import androidx.core.content.FileProvider
 import mezzari.torres.lucas.easy_debugger.databinding.ActivityExceptionBinding
-import mezzari.torres.lucas.easy_debugger.generic.BaseActivity
+import mezzari.torres.lucas.core.generic.BaseActivity
 import java.io.*
 import java.lang.Exception
 import java.text.SimpleDateFormat

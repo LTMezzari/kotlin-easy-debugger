@@ -1,21 +1,29 @@
 package mezzari.torres.lucas.easy_debugger_network
 
 import android.app.Application
-import android.content.Intent
+import androidx.fragment.app.Fragment
 import mezzari.torres.lucas.easy_debugger.EasyDebugger
-import mezzari.torres.lucas.easy_debugger.debug.dialog.model.DebugOption
+import mezzari.torres.lucas.easy_debugger.debug.model.DebugOption
+import mezzari.torres.lucas.easy_debugger.debug.model.DebugPageRedirect
 import mezzari.torres.lucas.easy_debugger.interfaces.DebuggerModule
+import mezzari.torres.lucas.easy_debugger_network.view.NetworkLoggerFragment
 
 /**
  * @author Lucas T. Mezzari
  * @since 16/03/25
  **/
-class NetworkModule : DebuggerModule {
+internal class NetworkModule(private val name: String): DebuggerModule {
     override fun onDebuggerInitialization(application: Application, debugger: EasyDebugger) {}
 
     override fun onCreateDebugOptions(options: ArrayList<DebugOption>) {
-        options.add(DebugOption("Network Logs") { context ->
-            context.startActivity(Intent(context, mezzari.torres.lucas.easy_debugger_network.view.NetworkLoggerActivity::class.java))
-        })
+        options.add(DebugOption(name, DebugPageRedirect(this)))
     }
+
+    override fun onCreateDebugFragment(): Fragment {
+        return NetworkLoggerFragment()
+    }
+}
+
+fun EasyDebugger.setNetworkModule(name: String = "Network Calls") {
+    addModule(NetworkModule(name))
 }

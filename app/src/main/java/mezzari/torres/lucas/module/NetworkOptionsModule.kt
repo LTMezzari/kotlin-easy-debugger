@@ -3,7 +3,7 @@ package mezzari.torres.lucas.module
 import android.app.Application
 import android.content.Intent
 import mezzari.torres.lucas.easy_debugger.EasyDebugger
-import mezzari.torres.lucas.easy_debugger.debug.dialog.model.DebugOption
+import mezzari.torres.lucas.easy_debugger.debug.model.DebugOption
 import mezzari.torres.lucas.easy_debugger.interfaces.DebuggerModule
 import mezzari.torres.lucas.view.network.NetworkOptionActivity
 

@@ -15,6 +15,7 @@ android {
     compileSdkVersion(targetVersion)
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
     defaultConfig {
         applicationId = "mezzari.torres.lucas.kotlin_easy_debugger"
@@ -65,7 +66,10 @@ dependencies {
     implementation(libs.retrofit.gson)
 
     //My Libraries
+    implementation(libs.network)
+
+    //Project
+    implementation(project(":core"))
     implementation(project(":easy-debugger"))
     implementation(project(":easy-debugger-network"))
-    implementation(libs.network)
 }

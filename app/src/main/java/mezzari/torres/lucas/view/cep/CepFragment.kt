@@ -5,10 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import mezzari.torres.lucas.core.generic.BaseFragment
 import mezzari.torres.lucas.databinding.FragmentCepBinding
-import mezzari.torres.lucas.generic.BaseFragment
 import mezzari.torres.lucas.network.viacep.ViacepService
 
+/**
+ * @author Lucas T. Mezzari
+ * @since 22/03/2025
+ **/
 class CepFragment : BaseFragment() {
 
     private lateinit var binding: FragmentCepBinding

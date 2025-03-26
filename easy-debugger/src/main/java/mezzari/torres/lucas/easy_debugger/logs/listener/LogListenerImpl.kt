@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
-import mezzari.torres.lucas.easy_debugger.interfaces.AppDispatcher
+import mezzari.torres.lucas.core.interfaces.AppDispatcher
 
 /**
  * @author Lucas T. Mezzari

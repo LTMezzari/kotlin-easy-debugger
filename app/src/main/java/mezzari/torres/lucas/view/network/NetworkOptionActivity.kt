@@ -3,8 +3,8 @@ package mezzari.torres.lucas.view.network
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
+import mezzari.torres.lucas.core.generic.BaseActivity
 import mezzari.torres.lucas.databinding.ActivityNetworkOptionBinding
-import mezzari.torres.lucas.generic.BaseActivity
 import mezzari.torres.lucas.persistence.SessionManager
 
 /**

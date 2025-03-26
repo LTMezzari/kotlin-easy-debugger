@@ -37,6 +37,7 @@ android {
     defaultConfig {
         minSdk = minVersion
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -74,6 +75,9 @@ dependencies {
     implementation(libs.retrofit)
 
     //My Libraries
-    implementation(project(":easy-debugger"))
     implementation(libs.network)
+
+    //Project
+    implementation(project(":core"))
+    implementation(project(":easy-debugger"))
 }

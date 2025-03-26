@@ -15,13 +15,16 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import androidx.core.graphics.createBitmap
-import mezzari.torres.lucas.easy_debugger.debug.dialog.model.DebugOption
+import mezzari.torres.lucas.core.logger.AppLogger
+import mezzari.torres.lucas.easy_debugger.debug.model.DebugOption
+import mezzari.torres.lucas.easy_debugger.di.appLogger
 
 /**
  * @author Lucas T. Mezzari
  * @since 17/03/25
  **/
-class PrintModule : DebuggerModule, Application.ActivityLifecycleCallbacks {
+class PrintModule(private val name: String, private val appLogger: AppLogger) : DebuggerModule,
+    Application.ActivityLifecycleCallbacks {
 
     private var currentActivity: Activity? = null
 
@@ -32,11 +35,12 @@ class PrintModule : DebuggerModule, Application.ActivityLifecycleCallbacks {
     override fun onCreateDebugOptions(options: ArrayList<DebugOption>) {
         options.add(
             DebugOption(
-                "Print"
+                name
             ) {
                 val activity = currentActivity ?: return@DebugOption
                 takeScreenshot(activity)
-            })
+            }
+        )
     }
 
     private fun takeScreenshot(activity: Activity) {
@@ -49,7 +53,7 @@ class PrintModule : DebuggerModule, Application.ActivityLifecycleCallbacks {
             writeFile(print, file)
             sharePrint(activity, file)
         } catch (e: Exception) {
-            e.printStackTrace()
+            appLogger.logError(e)
         }
     }
 
@@ -58,7 +62,7 @@ class PrintModule : DebuggerModule, Application.ActivityLifecycleCallbacks {
             val name = SimpleDateFormat("yyyy-MM-dd_hh-mm-ss", Locale.getDefault()).format(Date())
             File(activity.cacheDir, "$name.jpg")
         } catch (e: java.lang.Exception) {
-            e.printStackTrace()
+            appLogger.logError(e)
             null
         }
     }
@@ -114,4 +118,8 @@ class PrintModule : DebuggerModule, Application.ActivityLifecycleCallbacks {
     override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {}
 
     override fun onActivityDestroyed(activity: Activity) {}
+}
+
+fun EasyDebugger.setPrintModule(name: String = "Print") {
+    addModule(PrintModule(name, appLogger))
 }

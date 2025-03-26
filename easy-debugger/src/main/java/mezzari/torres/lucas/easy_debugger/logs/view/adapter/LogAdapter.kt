@@ -1,5 +1,6 @@
 package mezzari.torres.lucas.easy_debugger.logs.view.adapter
 
+import android.R
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -18,7 +19,7 @@ internal class LogAdapter(context: Context) : RecyclerView.Adapter<LogAdapter.Lo
     private var logs: ArrayList<String> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LogViewHolder {
-        return LogViewHolder(inflater.inflate(android.R.layout.simple_list_item_1, parent, false))
+        return LogViewHolder(inflater.inflate(R.layout.simple_list_item_1, parent, false))
     }
 
     override fun onBindViewHolder(holder: LogViewHolder, position: Int) {
