@@ -2,20 +2,20 @@ package mezzari.torres.lucas.easy_debugger.navigation.model
 
 import android.app.Activity
 import androidx.lifecycle.Lifecycle
-import java.util.Stack
+import mezzari.torres.lucas.core.model.ObservableList
 
 /**
  * @author Lucas T. Mezzari
  * @since 16/03/25
  **/
 data class ActivityNavigationStack(
-    val activities: Stack<ActivityWrapper> = Stack()
+    val activities: ObservableList<ActivityWrapper> = ObservableList()
 ) {
     fun addActivity(activity: Activity, state: Lifecycle.State = Lifecycle.State.CREATED) {
         if (isActivityInStack(activity)) {
             return
         }
-        activities.push(ActivityWrapper(activity, state))
+        activities.add(0, ActivityWrapper(activity, state))
     }
 
     fun removeActivity(activity: Activity) {
@@ -29,7 +29,8 @@ data class ActivityNavigationStack(
 
     fun updateActivityState(activity: Activity, state: Lifecycle.State) {
         val wrapper = getActivity(activity) ?: return
-        wrapper.state = state
+        val position = activities.indexOf(wrapper)
+        activities[position] = ActivityWrapper(activity, state)
     }
 
     private fun isActivityInStack(activity: Activity): Boolean {

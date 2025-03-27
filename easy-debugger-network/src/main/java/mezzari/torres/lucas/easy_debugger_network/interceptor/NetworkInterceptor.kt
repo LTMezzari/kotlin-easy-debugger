@@ -1,5 +1,6 @@
 package mezzari.torres.lucas.easy_debugger_network.interceptor
 
+import mezzari.torres.lucas.core.model.ObservableList
 import mezzari.torres.lucas.easy_debugger_network.model.NetworkLog
 import mezzari.torres.lucas.easy_debugger_network.model.NetworkRequest
 import mezzari.torres.lucas.easy_debugger_network.model.NetworkResponse
@@ -76,6 +77,6 @@ class NetworkInterceptor : Interceptor {
     }
 
     companion object {
-        val networkLogs: ArrayList<NetworkLog> = arrayListOf()
+        val networkLogs: ObservableList<NetworkLog> = ObservableList()
     }
 }

@@ -10,7 +10,7 @@ import java.lang.ref.WeakReference
  **/
 class ActivityWrapper(
     activity: Activity,
-    var state: Lifecycle.State
+    val state: Lifecycle.State
 ) {
     val name: String = activity::class.java.name
     val activity: WeakReference<Activity> = WeakReference(activity)

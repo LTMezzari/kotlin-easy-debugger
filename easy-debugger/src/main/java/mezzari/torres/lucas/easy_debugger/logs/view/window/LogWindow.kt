@@ -1,8 +1,6 @@
 package mezzari.torres.lucas.easy_debugger.logs.view.window
 
-import android.content.Context
 import android.view.Gravity.BOTTOM
-import android.view.Gravity.END
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +12,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import mezzari.torres.lucas.easy_debugger.EasyDebugger
 import mezzari.torres.lucas.easy_debugger.databinding.LayoutMinimizedLogFragmentBinding
-import mezzari.torres.lucas.easy_debugger.interfaces.MinimizedWindow
+import mezzari.torres.lucas.easy_debugger.generics.MinimizedWindow
 import mezzari.torres.lucas.easy_debugger.logs.LogModule
 import mezzari.torres.lucas.easy_debugger.logs.listener.LogListener
 import mezzari.torres.lucas.easy_debugger.logs.view.adapter.LogAdapter
@@ -23,18 +21,12 @@ import mezzari.torres.lucas.easy_debugger.logs.view.adapter.LogAdapter
  * @author Lucas T. Mezzari
  * @since 22/03/25
  **/
-class LogWindow : MinimizedWindow {
+class LogWindow : MinimizedWindow() {
 
-    private lateinit var context: Context
     private lateinit var binding: LayoutMinimizedLogFragmentBinding
 
     private val adapter: LogAdapter by lazy {
         LogAdapter(context)
-    }
-
-    override fun onCreate(context: Context) {
-        super.onCreate(context)
-        this.context = context
     }
 
     override fun onCreateView(inflater: LayoutInflater, parent: ViewGroup?): View {

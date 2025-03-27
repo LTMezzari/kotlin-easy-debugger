@@ -1,4 +1,4 @@
-package mezzari.torres.lucas.easy_debugger.navigation.view
+package mezzari.torres.lucas.easy_debugger.navigation.view.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import mezzari.torres.lucas.core.archive.listenWithAdapter
 import mezzari.torres.lucas.easy_debugger.EasyDebugger
 import mezzari.torres.lucas.easy_debugger.databinding.FragmentNavigationStackBinding
 import mezzari.torres.lucas.core.generic.BaseFragment
@@ -41,10 +42,12 @@ internal class NavigationStackFragment : BaseFragment() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         binding.rvActivitiesStack.adapter = adapter
         binding.rvActivitiesStack.layoutManager =
             LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+
+        listenWithAdapter(viewLifecycleOwner, navigationStack.activities, adapter)
     }
 }

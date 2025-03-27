@@ -6,7 +6,9 @@ import mezzari.torres.lucas.easy_debugger.EasyDebugger
 import mezzari.torres.lucas.easy_debugger.debug.model.DebugOption
 import mezzari.torres.lucas.easy_debugger.debug.model.DebugPageRedirect
 import mezzari.torres.lucas.easy_debugger.interfaces.DebuggerModule
-import mezzari.torres.lucas.easy_debugger_network.view.NetworkLoggerFragment
+import mezzari.torres.lucas.easy_debugger.generics.MinimizedWindow
+import mezzari.torres.lucas.easy_debugger_network.view.fragment.NetworkLoggerFragment
+import mezzari.torres.lucas.easy_debugger_network.view.window.NetworkLoggerWindow
 
 /**
  * @author Lucas T. Mezzari
@@ -21,6 +23,10 @@ internal class NetworkModule(private val name: String): DebuggerModule {
 
     override fun onCreateDebugFragment(): Fragment {
         return NetworkLoggerFragment()
+    }
+
+    override fun onCreateMinimizedWindow(): MinimizedWindow {
+        return NetworkLoggerWindow()
     }
 }
 

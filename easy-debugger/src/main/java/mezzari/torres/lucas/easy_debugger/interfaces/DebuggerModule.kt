@@ -1,13 +1,10 @@
 package mezzari.torres.lucas.easy_debugger.interfaces
 
 import android.app.Application
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import mezzari.torres.lucas.easy_debugger.EasyDebugger
 import mezzari.torres.lucas.easy_debugger.debug.model.DebugOption
-import java.io.Serializable
+import mezzari.torres.lucas.easy_debugger.generics.MinimizedWindow
 
 /**
  * @author Lucas T. Mezzari

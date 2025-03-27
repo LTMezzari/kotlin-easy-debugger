@@ -7,7 +7,7 @@ import mezzari.torres.lucas.easy_debugger.debug.model.DebugOption
 import mezzari.torres.lucas.easy_debugger.debug.model.DebugPageRedirect
 import mezzari.torres.lucas.easy_debugger.di.logListener
 import mezzari.torres.lucas.easy_debugger.interfaces.DebuggerModule
-import mezzari.torres.lucas.easy_debugger.interfaces.MinimizedWindow
+import mezzari.torres.lucas.easy_debugger.generics.MinimizedWindow
 import mezzari.torres.lucas.easy_debugger.logs.listener.LogListener
 import mezzari.torres.lucas.easy_debugger.logs.view.fragment.LogFragment
 import mezzari.torres.lucas.easy_debugger.logs.view.window.LogWindow

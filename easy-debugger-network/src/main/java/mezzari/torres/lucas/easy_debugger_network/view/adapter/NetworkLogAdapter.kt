@@ -1,16 +1,17 @@
 package mezzari.torres.lucas.easy_debugger_network.view.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import mezzari.torres.lucas.easy_debugger.databinding.RowEmptyLogsBinding
-import mezzari.torres.lucas.easy_debugger.databinding.RowLogCollapsedBinding
-import mezzari.torres.lucas.easy_debugger.databinding.RowLogContentBinding
-import mezzari.torres.lucas.easy_debugger.databinding.RowLogFooterBinding
-import mezzari.torres.lucas.easy_debugger.databinding.RowLogHeaderBinding
+import mezzari.torres.lucas.easy_debugger_network.databinding.RowEmptyLogsBinding
+import mezzari.torres.lucas.easy_debugger_network.databinding.RowLogCollapsedBinding
+import mezzari.torres.lucas.easy_debugger_network.databinding.RowLogContentBinding
+import mezzari.torres.lucas.easy_debugger_network.databinding.RowLogFooterBinding
+import mezzari.torres.lucas.easy_debugger_network.databinding.RowLogHeaderBinding
 import mezzari.torres.lucas.easy_debugger_network.model.NetworkLog
 import mezzari.torres.lucas.easy_debugger_network.interceptor.NetworkInterceptor
 
@@ -19,12 +20,10 @@ import mezzari.torres.lucas.easy_debugger_network.interceptor.NetworkInterceptor
  * @author lucas.mezzari@operacao.rcadigital.com.br
  * @since 2020-02-20
  */
-internal class NetworkLogAdapter(context: Context) :
+internal class NetworkLogAdapter(context: Context, private val networkLogs: List<NetworkLog>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val inflater = LayoutInflater.from(context)
-
-    private val networkLogs: List<NetworkLog> = NetworkInterceptor.networkLogs
     private var items: ArrayList<Item> = extractItems()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -179,6 +178,16 @@ internal class NetworkLogAdapter(context: Context) :
                 holder.binding.tvCode.text = log.response?.code?.toString() ?: "Unknown Error"
             }
         }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun addItem(log: NetworkLog) {
+        if (items.isEmpty()) {
+            notifyDataSetChanged()
+        }
+        val size = items.size
+        items += HeaderItem(log, ContentItem(log), FooterItem(log))
+        notifyItemInserted(size)
     }
 
     private fun extractItems(): ArrayList<Item> {

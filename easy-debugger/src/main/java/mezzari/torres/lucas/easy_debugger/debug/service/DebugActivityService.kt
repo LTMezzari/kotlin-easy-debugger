@@ -11,7 +11,7 @@ import mezzari.torres.lucas.easy_debugger.EasyDebugger
 import mezzari.torres.lucas.easy_debugger.debug.DebugModule
 import mezzari.torres.lucas.easy_debugger.debug.view.DebugActivity
 import mezzari.torres.lucas.easy_debugger.interfaces.DebuggerModule
-import mezzari.torres.lucas.easy_debugger.interfaces.MinimizedWindow
+import mezzari.torres.lucas.easy_debugger.generics.MinimizedWindow
 
 /**
  * @author Lucas T. Mezzari
