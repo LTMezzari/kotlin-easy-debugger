@@ -1,4 +1,4 @@
-package mezzari.torres.lucas.core.record
+package mezzari.torres.lucas.easy_debugger.record.manager
 
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.DefaultLifecycleObserver

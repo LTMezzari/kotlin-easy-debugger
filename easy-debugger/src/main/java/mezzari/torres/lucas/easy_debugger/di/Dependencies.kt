@@ -3,8 +3,8 @@ package mezzari.torres.lucas.easy_debugger.di
 import mezzari.torres.lucas.core.di.appDispatcher
 import mezzari.torres.lucas.core.logger.AppLogger
 import mezzari.torres.lucas.core.logger.AppLoggerImpl
-import mezzari.torres.lucas.core.record.ScreenRecordManager
-import mezzari.torres.lucas.core.record.ScreenRecordManagerImpl
+import mezzari.torres.lucas.easy_debugger.record.manager.ScreenRecordManager
+import mezzari.torres.lucas.easy_debugger.record.manager.ScreenRecordManagerImpl
 import mezzari.torres.lucas.core.service.FloatingWindowManager
 import mezzari.torres.lucas.core.service.FloatingWindowManagerImpl
 import mezzari.torres.lucas.easy_debugger.EasyDebugger

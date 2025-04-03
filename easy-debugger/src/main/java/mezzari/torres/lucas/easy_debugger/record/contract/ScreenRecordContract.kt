@@ -1,4 +1,4 @@
-package mezzari.torres.lucas.core.record.contract
+package mezzari.torres.lucas.easy_debugger.record.contract
 
 import android.content.Context
 import android.content.Intent

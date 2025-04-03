@@ -4,7 +4,7 @@ import android.app.Activity
 import android.app.Application
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
-import mezzari.torres.lucas.core.record.ScreenRecordManager
+import mezzari.torres.lucas.easy_debugger.record.manager.ScreenRecordManager
 import mezzari.torres.lucas.easy_debugger.EasyDebugger
 import mezzari.torres.lucas.easy_debugger.debug.model.DebugOption
 import mezzari.torres.lucas.easy_debugger.di.screenRecordManager
