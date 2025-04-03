@@ -48,7 +48,7 @@ internal class DebugDialog(
     }
 
     private fun onDebugOptionClickLister(option: DebugOption) {
-        option.onClick.onOptionClick(requireContext())
+        option.onClick.onOptionClick(requireActivity())
         dismiss()
     }
 }

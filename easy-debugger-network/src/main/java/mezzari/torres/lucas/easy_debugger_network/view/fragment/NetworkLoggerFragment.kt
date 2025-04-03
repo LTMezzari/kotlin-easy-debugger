@@ -10,10 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import mezzari.torres.lucas.core.archive.listenWithViewLifecycleOwner
+import mezzari.torres.lucas.core.di.appDispatcher
 import mezzari.torres.lucas.core.generic.BaseFragment
 import mezzari.torres.lucas.core.interfaces.AppDispatcher
 import mezzari.torres.lucas.core.model.ObservableList
-import mezzari.torres.lucas.easy_debugger.di.appDispatcher
 import mezzari.torres.lucas.easy_debugger_network.databinding.FragmentNetworkLoggerBinding
 import mezzari.torres.lucas.easy_debugger_network.interceptor.NetworkInterceptor
 import mezzari.torres.lucas.easy_debugger_network.model.NetworkLog

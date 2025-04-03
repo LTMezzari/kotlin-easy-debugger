@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <external-cache-path
+        name="crashes"
+        path="crashes/" />
+    <external-files-path
+        name="logs"
+        path="logs/" />
+    <external-files-path
+        name="prints"
+        path="prints/" />
+    <external-files-path
+        name="recordings"
+        path="recordings/" />
+</paths>

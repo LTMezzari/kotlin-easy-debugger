@@ -3,19 +3,20 @@ package mezzari.torres.lucas.easy_debugger.exception.view
 import android.content.Intent
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
-import androidx.core.content.FileProvider
+import mezzari.torres.lucas.core.di.fileManager
+import mezzari.torres.lucas.core.file.FileManager
 import mezzari.torres.lucas.easy_debugger.databinding.ActivityExceptionBinding
 import mezzari.torres.lucas.core.generic.BaseActivity
 import java.io.*
 import java.lang.Exception
-import java.text.SimpleDateFormat
-import java.util.*
 
 /**
  * @author Lucas T. Mezzari
  * @since 20/02/2020
  **/
 internal class ExceptionActivity : BaseActivity() {
+
+    private val mFileManager: FileManager by lazy { fileManager }
 
     private lateinit var binding: ActivityExceptionBinding
 
@@ -47,14 +48,17 @@ internal class ExceptionActivity : BaseActivity() {
 
     private fun createFile(): File? {
         return try {
-            val name = SimpleDateFormat("yyyy-MM-dd_hh-mm-ss", Locale.getDefault()).format(Date())
-            File(cacheDir, "$name.txt")
+            mFileManager.createFile(
+                externalCacheDir ?: cacheDir,
+                "crashes/",
+                "${mFileManager.getFileName()}.txt"
+            )
         } catch (e: Exception) {
             null
         }
     }
 
-    private fun writeExeption(exception: String, file: File) {
+    private fun writeException(exception: String, file: File) {
         val fileWriter = FileWriter(file)
         fileWriter.use {
             it.write(exception)
@@ -65,7 +69,7 @@ internal class ExceptionActivity : BaseActivity() {
     private fun shareException() {
         stackTrace?.run {
             val file = createFile() ?: return
-            writeExeption(this, file)
+            writeException(this, file)
 
             startActivity(
                 Intent.createChooser(
@@ -73,11 +77,7 @@ internal class ExceptionActivity : BaseActivity() {
                         type = "text/*"
                         putExtra(
                             Intent.EXTRA_STREAM,
-                            FileProvider.getUriForFile(
-                                this@ExceptionActivity,
-                                "mezzari.torres.lucas.easy_debugger.library.provider",
-                                file
-                            )
+                            mFileManager.getUriForFile(this@ExceptionActivity, file)
                         )
                         addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                     },

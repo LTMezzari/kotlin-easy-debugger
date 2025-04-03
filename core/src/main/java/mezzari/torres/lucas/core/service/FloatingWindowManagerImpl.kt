@@ -28,8 +28,12 @@ class FloatingWindowManagerImpl(private val appLogger: AppLogger) : FloatingWind
         val mIntent = intent?.apply {
             setClass(context, service.java)
         } ?: Intent(context, service.java)
+        if (!isSupported()) {
+            appLogger.logMessage("Overlay Permission not supported")
+            return
+        }
         if (!isPermissionsEnabled(context)) {
-            appLogger.logMessage("Overlay Permission not granted or not supported")
+            appLogger.logMessage("Overlay Permission not granted")
             requestFloatingWindowPermission(context)
             return
         }
@@ -63,9 +67,13 @@ class FloatingWindowManagerImpl(private val appLogger: AppLogger) : FloatingWind
         appLogger.logMessage("FloatingWindow ($service) started")
     }
 
-    private fun isPermissionsEnabled(context: Context): Boolean {
+    private fun isSupported(): Boolean {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
-                && Settings.canDrawOverlays(context)
+    }
+
+    @SuppressLint("NewApi")
+    private fun isPermissionsEnabled(context: Context): Boolean {
+        return Settings.canDrawOverlays(context)
     }
 
     @SuppressLint("InlinedApi")

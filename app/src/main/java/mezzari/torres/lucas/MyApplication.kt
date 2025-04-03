@@ -7,6 +7,7 @@ import mezzari.torres.lucas.easy_debugger.exception.setExceptionModule
 import mezzari.torres.lucas.easy_debugger.logs.setLoggerModule
 import mezzari.torres.lucas.easy_debugger.navigation.setActivityNavigationModule
 import mezzari.torres.lucas.easy_debugger.print.setPrintModule
+import mezzari.torres.lucas.easy_debugger.record.setScreenRecordModule
 import mezzari.torres.lucas.easy_debugger.settings.setSettingsModule
 import mezzari.torres.lucas.easy_debugger_network.network.NetworkLoggerModule
 import mezzari.torres.lucas.easy_debugger_network.setNetworkModule
@@ -33,6 +34,7 @@ class MyApplication : Application() {
             setSettingsModule()
             setNetworkModule()
             setPrintModule()
+            setScreenRecordModule()
             addModule(NetworkOptionsModule())
         }
 

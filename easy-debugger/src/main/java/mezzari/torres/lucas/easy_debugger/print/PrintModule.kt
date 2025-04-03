@@ -4,18 +4,16 @@ import android.app.Activity
 import android.app.Application
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.Canvas
 import android.os.Bundle
-import androidx.core.content.FileProvider
 import mezzari.torres.lucas.easy_debugger.EasyDebugger
 import mezzari.torres.lucas.easy_debugger.interfaces.DebuggerModule
 import java.io.File
 import java.io.FileOutputStream
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
-import androidx.core.graphics.createBitmap
+import mezzari.torres.lucas.core.di.fileManager
+import mezzari.torres.lucas.core.di.printScreenManager
+import mezzari.torres.lucas.core.file.FileManager
 import mezzari.torres.lucas.core.logger.AppLogger
+import mezzari.torres.lucas.core.print.PrintScreenManager
 import mezzari.torres.lucas.easy_debugger.debug.model.DebugOption
 import mezzari.torres.lucas.easy_debugger.di.appLogger
 
@@ -25,6 +23,9 @@ import mezzari.torres.lucas.easy_debugger.di.appLogger
  **/
 class PrintModule(private val name: String, private val appLogger: AppLogger) : DebuggerModule,
     Application.ActivityLifecycleCallbacks {
+
+    private val mFileManager: FileManager by lazy { fileManager }
+    private val mPrintManager: PrintScreenManager by lazy { printScreenManager }
 
     private var currentActivity: Activity? = null
 
@@ -45,12 +46,8 @@ class PrintModule(private val name: String, private val appLogger: AppLogger) : 
 
     private fun takeScreenshot(activity: Activity) {
         try {
-            val rootView = activity.window.decorView.rootView
-            val print = createBitmap(rootView.width, rootView.height)
-            val canvas = Canvas(print)
-            rootView.draw(canvas)
             val file = createFile(activity) ?: return
-            writeFile(print, file)
+            writeFile(mPrintManager.printActivity(activity), file)
             sharePrint(activity, file)
         } catch (e: Exception) {
             appLogger.logError(e)
@@ -59,8 +56,10 @@ class PrintModule(private val name: String, private val appLogger: AppLogger) : 
 
     private fun createFile(activity: Activity): File? {
         return try {
-            val name = SimpleDateFormat("yyyy-MM-dd_hh-mm-ss", Locale.getDefault()).format(Date())
-            File(activity.cacheDir, "$name.jpg")
+            mFileManager.createFile(
+                activity.getExternalFilesDir("prints") ?: activity.filesDir,
+                "${mFileManager.getFileName()}.jpg"
+            )
         } catch (e: java.lang.Exception) {
             appLogger.logError(e)
             null
@@ -78,11 +77,7 @@ class PrintModule(private val name: String, private val appLogger: AppLogger) : 
         activity.startActivity(
             Intent.createChooser(
                 Intent(Intent.ACTION_SEND).apply {
-                    val uri = FileProvider.getUriForFile(
-                        activity,
-                        "mezzari.torres.lucas.easy_debugger.library.provider",
-                        file
-                    )
+                    val uri = mFileManager.getUriForFile(activity, file)
                     setDataAndType(uri, "image/*")
                     putExtra(
                         Intent.EXTRA_STREAM,

@@ -1,5 +1,5 @@
 [versions]
-gradleplugin = "8.9.0"
+gradleplugin = "8.9.1"
 coreKtx = "1.15.0"
 kotlinVersion = "2.1.10"
 retrofitVersion = "2.11.0"
