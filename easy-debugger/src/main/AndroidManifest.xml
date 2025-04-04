@@ -10,24 +10,25 @@
         <activity
             android:name=".debug.view.DebugActivity"
             android:exported="true"
+            android:resizeableActivity="true"
+            android:supportsPictureInPicture="true"
             android:theme="@style/DebugAppTheme" />
 
         <service
             android:name=".debug.service.FloatingDebugViewService"
             android:enabled="true"
             android:exported="false" />
-
         <service
             android:name=".debug.service.DebugActivityService"
             android:enabled="true"
-            android:exported="false" />
-
+            android:exported="false"
+            android:theme="@style/DebugAppTheme" />
         <service
             android:name=".record.service.ScreenRecordService"
             android:exported="false"
             android:foregroundServiceType="mediaProjection" />
 
         <receiver android:name=".record.receiver.OnScreenRecordStoppedReceiver" />
-
     </application>
+
 </manifest>

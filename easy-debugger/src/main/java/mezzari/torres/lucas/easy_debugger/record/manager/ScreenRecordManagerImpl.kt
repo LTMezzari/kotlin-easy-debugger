@@ -15,7 +15,7 @@ import java.lang.ref.WeakReference
  * @author Lucas T. Mezzari
  * @since 29/03/25
  **/
-class ScreenRecordManagerImpl(private val appLogger: AppLogger) : ScreenRecordManager {
+internal class ScreenRecordManagerImpl(private val appLogger: AppLogger) : ScreenRecordManager {
 
     private lateinit var mediaProjectionManager: MediaProjectionManager
     private var launcher: ActivityResultLauncher<Any?>? = null

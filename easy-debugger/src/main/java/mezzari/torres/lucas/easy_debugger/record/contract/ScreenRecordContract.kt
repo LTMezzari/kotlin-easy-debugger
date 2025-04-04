@@ -9,7 +9,7 @@ import androidx.activity.result.contract.ActivityResultContract
  * @author Lucas T. Mezzari
  * @since 31/03/25
  **/
-class ScreenRecordContract(private val mediaProjectionManager: MediaProjectionManager) :
+internal class ScreenRecordContract(private val mediaProjectionManager: MediaProjectionManager) :
     ActivityResultContract<Any?, Pair<Int, Intent?>>() {
     override fun createIntent(context: Context, input: Any?): Intent =
         mediaProjectionManager.createScreenCaptureIntent()

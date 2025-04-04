@@ -1,6 +1,7 @@
 package mezzari.torres.lucas.easy_debugger.debug.service
 
 import android.content.Intent
+import android.graphics.Point
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import mezzari.torres.lucas.easy_debugger.databinding.LayoutMinimizedDebugViewBi
 import mezzari.torres.lucas.core.generic.BaseFloatingViewService
 import mezzari.torres.lucas.easy_debugger.EasyDebugger
 import mezzari.torres.lucas.easy_debugger.debug.DebugModule
+import mezzari.torres.lucas.easy_debugger.debug.listener.DraggableTouchListener
 import mezzari.torres.lucas.easy_debugger.debug.view.DebugActivity
 import mezzari.torres.lucas.easy_debugger.interfaces.DebuggerModule
 import mezzari.torres.lucas.easy_debugger.generics.MinimizedWindow
@@ -37,14 +39,18 @@ internal class DebugActivityService : BaseFloatingViewService() {
 
     override fun onViewCreated(view: View) {
         super.onViewCreated(view)
+        DraggableTouchListener(view.context, binding.ibDrag, initialPosition = {
+            Point(params.x, params.y)
+        }) { x, y ->
+            params.x = x
+            params.y = y
+            invalidateLayout()
+        }
         binding.ibClose.setOnClickListener {
-            stopSelf()
+            closeWindow()
         }
         binding.ibMaximize.setOnClickListener {
-            stopSelf()
-            startActivity(Intent(applicationContext, DebugActivity::class.java).apply {
-                flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            })
+            maximizeWindow()
         }
         window?.onViewCreated(view)
     }
@@ -56,6 +62,7 @@ internal class DebugActivityService : BaseFloatingViewService() {
 
     override fun onCreateLayoutParams(): WindowManager.LayoutParams {
         val params = super.onCreateLayoutParams()
+        params.flags += WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
         return window?.onCreateLayoutParams(params) ?: params
     }
 
@@ -66,5 +73,16 @@ internal class DebugActivityService : BaseFloatingViewService() {
 
     private fun getDebuggerModule(): DebuggerModule? {
         return EasyDebugger.instance.getModuleByType<DebugModule>()?.currentActiveModule
+    }
+
+    private fun maximizeWindow() {
+        closeWindow()
+        startActivity(Intent(applicationContext, DebugActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        })
+    }
+
+    private fun closeWindow() {
+        stopSelf()
     }
 }

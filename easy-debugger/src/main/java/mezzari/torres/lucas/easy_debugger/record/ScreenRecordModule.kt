@@ -2,6 +2,7 @@ package mezzari.torres.lucas.easy_debugger.record
 
 import android.app.Activity
 import android.app.Application
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
 import mezzari.torres.lucas.easy_debugger.record.manager.ScreenRecordManager
@@ -50,6 +51,9 @@ internal class ScreenRecordModule(
     override fun onActivityDestroyed(activity: Activity) {}
 }
 
-fun EasyDebugger.setScreenRecordModule(name: String = "Screen Record") {
-    addModule(ScreenRecordModule(name, screenRecordManager))
+fun EasyDebugger.setScreenRecordModule(name: String = "Screen Record", manager: ScreenRecordManager = screenRecordManager) {
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+        return
+    }
+    addModule(ScreenRecordModule(name, manager))
 }

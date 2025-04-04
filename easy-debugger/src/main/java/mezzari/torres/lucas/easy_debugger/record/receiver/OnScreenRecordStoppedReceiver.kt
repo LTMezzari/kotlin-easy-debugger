@@ -13,7 +13,7 @@ import mezzari.torres.lucas.easy_debugger.record.service.ScreenRecordService
  * @author Lucas T. Mezzari
  * @since 31/03/25
  **/
-class OnScreenRecordStoppedReceiver : BroadcastReceiver() {
+internal class OnScreenRecordStoppedReceiver : BroadcastReceiver() {
 
     private val manager: ScreenRecordManager by lazy { screenRecordManager }
     private val dispatcher: NotificationDispatcher by lazy { notificationDispatcher }

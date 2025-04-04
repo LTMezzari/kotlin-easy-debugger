@@ -1,5 +1,7 @@
 package mezzari.torres.lucas.easy_debugger.debug.view
 
+import android.app.PictureInPictureParams
+import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -101,6 +103,10 @@ internal class DebugActivity : BaseActivity(), MenuProvider {
     }
 
     private fun minimizeContent() {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//            enterPictureInPictureMode()
+//            return
+//        }
         windowManager.createFloatingWindow(this, DebugActivityService::class)
         finish()
     }

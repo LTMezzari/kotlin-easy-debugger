@@ -29,7 +29,7 @@ import mezzari.torres.lucas.easy_debugger.record.receiver.OnScreenRecordStoppedR
  * @author Lucas T. Mezzari
  * @since 02/04/25
  **/
-class ScreenRecordService : BaseService() {
+internal class ScreenRecordService : BaseService() {
 
     private val mFileManager: FileManager by lazy { fileManager }
     private val mAppLogger: AppLogger by lazy { appLogger }

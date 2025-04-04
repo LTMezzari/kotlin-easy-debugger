@@ -2,16 +2,13 @@ package mezzari.torres.lucas.easy_debugger.debug
 
 import android.app.Activity
 import android.app.Application
-import android.content.Intent
 import android.os.Bundle
 import mezzari.torres.lucas.easy_debugger.EasyDebugger
 import mezzari.torres.lucas.easy_debugger.debug.service.FloatingDebugViewService
 import mezzari.torres.lucas.easy_debugger.interfaces.DebuggerModule
 import java.lang.Exception
-import java.lang.ref.WeakReference
 import mezzari.torres.lucas.core.logger.AppLogger
 import mezzari.torres.lucas.core.service.FloatingWindowManager
-import mezzari.torres.lucas.easy_debugger.debug.service.DebugActivityService
 import mezzari.torres.lucas.easy_debugger.di.appLogger
 import mezzari.torres.lucas.easy_debugger.di.floatingWindowManager
 import mezzari.torres.lucas.easy_debugger.logs.LogModule

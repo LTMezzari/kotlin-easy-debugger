@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.CoroutineScope
@@ -77,6 +78,12 @@ class NetworkLoggerWindow : MinimizedWindow() {
         }
 
         networkLogs.addListener(listener)
+    }
+
+    override fun onCreateLayoutParams(params: WindowManager.LayoutParams): WindowManager.LayoutParams {
+        return super.onCreateLayoutParams(params).apply {
+            height = 900
+        }
     }
 
     override fun onDestroy() {

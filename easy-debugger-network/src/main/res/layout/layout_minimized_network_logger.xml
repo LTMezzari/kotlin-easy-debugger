@@ -3,5 +3,5 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rvNetworkLogs"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="300dp"
     tools:listitem="@layout/row_empty_logs" />

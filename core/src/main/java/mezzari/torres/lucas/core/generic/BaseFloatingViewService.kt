@@ -68,4 +68,8 @@ abstract class BaseFloatingViewService : BaseService() {
             )
         }
     }
+
+    open fun invalidateLayout() {
+        windowManager.updateViewLayout(floatingView, params)
+    }
 }

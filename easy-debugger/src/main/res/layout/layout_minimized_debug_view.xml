@@ -1,40 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/flRoot"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:background="#000000"
+    android:gravity="center"
     android:orientation="vertical"
-    android:background="#36000000"
+    android:padding="8dp"
     tools:layout_height="match_parent"
     tools:layout_width="match_parent">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:weightSum="1">
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-
-        <ImageButton
-            android:id="@+id/ibClose"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:src="@android:drawable/ic_menu_close_clear_cancel" />
-
-        <ImageButton
-            android:id="@+id/ibMaximize"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:src="@drawable/baseline_minimize_24" />
-    </LinearLayout>
 
     <FrameLayout
         android:id="@+id/flContent"
@@ -42,4 +18,37 @@
         android:layout_height="wrap_content"
         tools:layout_height="match_parent"
         tools:layout_width="match_parent" />
-</LinearLayout>
+
+    <ImageButton
+        android:id="@+id/ibClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_margin="8dp"
+        android:background="@android:color/transparent"
+        android:src="@android:drawable/ic_menu_close_clear_cancel" />
+
+    <ImageView
+        android:id="@+id/ibDrag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="8dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/baseline_minimize_24"
+        android:tint="@android:color/white"
+        app:tint="@android:color/white"
+        tools:tint="@android:color/white" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/ibMaximize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_margin="8dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/baseline_minimize_24"
+        android:tint="@android:color/white"
+        app:tint="@android:color/white"
+        tools:tint="@android:color/white" />
+</FrameLayout>
