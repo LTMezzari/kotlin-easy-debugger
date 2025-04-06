@@ -6,7 +6,6 @@ import kotlin.reflect.KClass
 
 /**
  * @author Lucas T. Mezzari
- * @author lucas.mezzari@operacao.rcadigital.com.br
  * @since 2020-02-20
  */
 abstract class BaseService {

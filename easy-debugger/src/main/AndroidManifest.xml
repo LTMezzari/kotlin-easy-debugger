@@ -1,33 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-
-    <application>
+    <application tools:node="merge">
         <activity
-            android:name=".view.NetworkLoggerActivity"
-            android:screenOrientation="portrait"
-            android:exported="true"/>
+            android:name=".exception.view.ExceptionActivity"
+            android:exported="true"
+            android:theme="@style/DebugAppTheme" />
         <activity
-            android:name=".view.ExceptionActivity"
-            android:screenOrientation="portrait"
-            android:exported="true"/>
+            android:name=".debug.view.DebugActivity"
+            android:exported="true"
+            android:resizeableActivity="true"
+            android:supportsPictureInPicture="true"
+            android:theme="@style/DebugAppTheme" />
 
         <service
-            android:name=".service.FloatingDebugViewService"
+            android:name=".debug.service.FloatingDebugViewService"
             android:enabled="true"
             android:exported="false" />
-
-        <provider
-            android:name="androidx.core.content.FileProvider"
-            android:authorities="mezzari.torres.lucas.easy_debugger.library.provider"
+        <service
+            android:name=".debug.service.DebugActivityService"
+            android:enabled="true"
             android:exported="false"
-            android:grantUriPermissions="true">
+            android:theme="@style/DebugAppTheme" />
+        <service
+            android:name=".record.service.ScreenRecordService"
+            android:exported="false"
+            android:foregroundServiceType="mediaProjection" />
 
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_provider" />
-        </provider>
+        <receiver android:name=".record.receiver.OnScreenRecordStoppedReceiver" />
     </application>
 
 </manifest>

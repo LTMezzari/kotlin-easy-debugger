@@ -34,10 +34,8 @@ android {
     }
     defaultConfig {
         minSdk = minVersion
-//        targetSdk = targetVersion
-//        versionCode = vCode
-//        versionName = vName
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
     buildTypes {
         getByName("release") {
@@ -70,6 +68,6 @@ dependencies {
     androidTestImplementation(libs.junit.ext)
     androidTestImplementation(libs.expresso)
 
-    //Retrofit
-    implementation(libs.retrofit)
+    //Project
+    implementation(project(":core"))
 }

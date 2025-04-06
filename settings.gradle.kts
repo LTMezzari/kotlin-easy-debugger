@@ -21,3 +21,4 @@ include(":app")
 include(":easy-debugger")
 include(":easy-debugger-network")
 rootProject.name = "Kotlin Easy Debugger"
+include(":core")

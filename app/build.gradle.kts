@@ -10,11 +10,13 @@ android {
     val vName = rootProject.ext.get("vName") as String
     val jvmVersion = rootProject.ext.get("jvmVersion") as JavaVersion
     val kotlinJvmVersion = rootProject.ext.get("kotlinJvmVersion") as String
+    val fileProviderAuthorities = "mezzari.torres.lucas.easy_debugger.library.provider"
 
     namespace = "mezzari.torres.lucas"
     compileSdkVersion(targetVersion)
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
     defaultConfig {
         applicationId = "mezzari.torres.lucas.kotlin_easy_debugger"
@@ -23,6 +25,12 @@ android {
         versionCode = vCode
         versionName = vName
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "fileProviderAuthorities", "\"$fileProviderAuthorities\"")
+        addManifestPlaceholders(
+            mapOf(
+                "fileProviderAuthorities" to fileProviderAuthorities
+            )
+        )
     }
     buildTypes {
         getByName("release") {
@@ -51,6 +59,10 @@ dependencies {
     implementation(libs.android.core)
     implementation(libs.material)
 
+    //Navigation
+    implementation(libs.navigation.ui)
+    implementation(libs.navigation.fragment)
+
     //Tests
     testImplementation(libs.junit)
     androidTestImplementation(libs.junit.ext)
@@ -61,7 +73,10 @@ dependencies {
     implementation(libs.retrofit.gson)
 
     //My Libraries
+    implementation(libs.network)
+
+    //Project
+    implementation(project(":core"))
     implementation(project(":easy-debugger"))
     implementation(project(":easy-debugger-network"))
-    implementation(libs.network)
 }

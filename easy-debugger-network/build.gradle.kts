@@ -30,12 +30,14 @@ android {
     namespace = "mezzari.torres.lucas.easy_debugger_network"
     compileSdkVersion(targetVersion)
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     defaultConfig {
         minSdk = minVersion
-//        targetSdk = targetVersion
-//        versionCode = vCode
-//        versionName = vName
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -62,6 +64,7 @@ dependencies {
 
     //Android
     implementation(libs.app.compat)
+    implementation(libs.material)
 
     //Test
     testImplementation(libs.junit)
@@ -72,6 +75,9 @@ dependencies {
     implementation(libs.retrofit)
 
     //My Libraries
-    implementation(project(":easy-debugger"))
     implementation(libs.network)
+
+    //Project
+    implementation(project(":core"))
+    implementation(project(":easy-debugger"))
 }

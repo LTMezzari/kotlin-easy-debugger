@@ -1,12 +1,22 @@
 package mezzari.torres.lucas.view
 
-import android.content.Intent
 import android.os.Bundle
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
+import mezzari.torres.lucas.R
+import mezzari.torres.lucas.core.generic.BaseActivity
 import mezzari.torres.lucas.databinding.ActivityMainBinding
-import mezzari.torres.lucas.generic.BaseActivity
-import java.lang.RuntimeException
 
+/**
+ * @author Lucas T. Mezzari
+ * @since 21/02/2020
+ **/
 class MainActivity : BaseActivity() {
+
+    private val navController: NavController? by lazy {
+        supportFragmentManager.findFragmentById(R.id.fcvNavHost)?.findNavController()
+    }
 
     private lateinit var binding: ActivityMainBinding
 
@@ -14,17 +24,13 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        binding.btnRequestCEP.setOnClickListener {
-            startActivity(Intent(this, CepActivity::class.java))
+        setSupportActionBar(binding.toolbar)
+        navController?.also {
+            binding.toolbar.setupWithNavController(it)
         }
+    }
 
-        binding.btnRequestJokes.setOnClickListener {
-            startActivity(Intent(this, JokesActivity::class.java))
-        }
-
-        binding.btnExplode.setOnClickListener {
-            throw RuntimeException("User pressed the wrong button")
-        }
+    override fun onSupportNavigateUp(): Boolean {
+        return navController?.navigateUp() ?: super.onSupportNavigateUp()
     }
 }
