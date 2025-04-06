@@ -10,6 +10,7 @@ android {
     val vName = rootProject.ext.get("vName") as String
     val jvmVersion = rootProject.ext.get("jvmVersion") as JavaVersion
     val kotlinJvmVersion = rootProject.ext.get("kotlinJvmVersion") as String
+    val fileProviderAuthorities = "mezzari.torres.lucas.easy_debugger.library.provider"
 
     namespace = "mezzari.torres.lucas"
     compileSdkVersion(targetVersion)
@@ -24,6 +25,12 @@ android {
         versionCode = vCode
         versionName = vName
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "fileProviderAuthorities", "\"$fileProviderAuthorities\"")
+        addManifestPlaceholders(
+            mapOf(
+                "fileProviderAuthorities" to fileProviderAuthorities
+            )
+        )
     }
     buildTypes {
         getByName("release") {

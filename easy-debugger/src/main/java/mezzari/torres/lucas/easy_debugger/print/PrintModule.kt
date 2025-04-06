@@ -21,7 +21,7 @@ import mezzari.torres.lucas.easy_debugger.di.appLogger
  * @author Lucas T. Mezzari
  * @since 17/03/25
  **/
-class PrintModule(private val name: String, private val appLogger: AppLogger) : DebuggerModule,
+class PrintModule(private val name: String, private val appLogger: AppLogger, private val authority: String) : DebuggerModule,
     Application.ActivityLifecycleCallbacks {
 
     private val mFileManager: FileManager by lazy { fileManager }
@@ -77,7 +77,7 @@ class PrintModule(private val name: String, private val appLogger: AppLogger) : 
         activity.startActivity(
             Intent.createChooser(
                 Intent(Intent.ACTION_SEND).apply {
-                    val uri = mFileManager.getUriForFile(activity, file)
+                    val uri = mFileManager.getUriForFile(activity, file, authority)
                     setDataAndType(uri, "image/*")
                     putExtra(
                         Intent.EXTRA_STREAM,
@@ -116,5 +116,5 @@ class PrintModule(private val name: String, private val appLogger: AppLogger) : 
 }
 
 fun EasyDebugger.setPrintModule(name: String = "Print") {
-    addModule(PrintModule(name, appLogger))
+    addModule(PrintModule(name, appLogger, configuration.fileProviderAuthority))
 }

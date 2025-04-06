@@ -23,8 +23,8 @@ class FileManagerImpl: FileManager {
         return File(parent, fileName)
     }
 
-    override fun getUriForFile(context: Context, file: File, providerName: String): Uri {
-        return FileProvider.getUriForFile(context, providerName, file)
+    override fun getUriForFile(context: Context, file: File, authority: String): Uri {
+        return FileProvider.getUriForFile(context, authority, file)
     }
 
     override fun getFileName(): String {

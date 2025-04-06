@@ -17,10 +17,14 @@ class EasyDebugger private constructor() {
     private val modules: ArrayList<DebuggerModule> = arrayListOf()
     val debugOptions: ArrayList<DebugOption> = arrayListOf()
     val navigationListeners: ArrayList<Application.ActivityLifecycleCallbacks> = arrayListOf()
-    var configuration: Configuration = Configuration()
+    var configuration: Configuration = Configuration(fileProviderAuthority = "")
 
     fun setLogsEnabled(isEnabled: Boolean) {
         configuration.isLogsEnabled = isEnabled
+    }
+
+    fun setFileProviderAuthority(authority: String) {
+        configuration.fileProviderAuthority = authority
     }
 
     fun setApplication(application: Application) {

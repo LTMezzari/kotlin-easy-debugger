@@ -7,6 +7,8 @@ import mezzari.torres.lucas.core.di.fileManager
 import mezzari.torres.lucas.core.file.FileManager
 import mezzari.torres.lucas.easy_debugger.databinding.ActivityExceptionBinding
 import mezzari.torres.lucas.core.generic.BaseActivity
+import mezzari.torres.lucas.easy_debugger.EasyDebugger
+import mezzari.torres.lucas.easy_debugger.exception.ExceptionModule
 import java.io.*
 import java.lang.Exception
 
@@ -71,13 +73,19 @@ internal class ExceptionActivity : BaseActivity() {
             val file = createFile() ?: return
             writeException(this, file)
 
+            val module = EasyDebugger.instance.getModuleByType<ExceptionModule>() ?: return
+
             startActivity(
                 Intent.createChooser(
                     Intent(Intent.ACTION_SEND).apply {
                         type = "text/*"
                         putExtra(
                             Intent.EXTRA_STREAM,
-                            mFileManager.getUriForFile(this@ExceptionActivity, file)
+                            mFileManager.getUriForFile(
+                                this@ExceptionActivity,
+                                file,
+                                module.fileProviderAuthority
+                            )
                         )
                         addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                     },

@@ -8,7 +8,6 @@ android {
     val minVersion = rootProject.ext.get("minVersion") as Int
     val jvmVersion = rootProject.ext.get("jvmVersion") as JavaVersion
     val kotlinJvmVersion = rootProject.ext.get("kotlinJvmVersion") as String
-    val fileProviderAuthorities = "mezzari.torres.lucas.easy_debugger.library.provider"
 
     namespace = "mezzari.torres.lucas.core"
     compileSdkVersion(targetVersion)
@@ -20,12 +19,6 @@ android {
         minSdk = minVersion
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
-        buildConfigField("String", "fileProviderAuthorities", "\"$fileProviderAuthorities\"")
-        addManifestPlaceholders(
-            mapOf(
-                "fileProviderAuthorities" to fileProviderAuthorities
-            )
-        )
     }
     buildTypes {
         release {

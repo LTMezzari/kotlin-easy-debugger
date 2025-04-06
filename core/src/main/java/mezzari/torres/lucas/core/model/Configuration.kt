@@ -5,5 +5,6 @@ package mezzari.torres.lucas.core.model
  * @since 25/03/25
  **/
 data class Configuration(
-    var isLogsEnabled: Boolean = false
+    var isLogsEnabled: Boolean = false,
+    var fileProviderAuthority: String,
 )

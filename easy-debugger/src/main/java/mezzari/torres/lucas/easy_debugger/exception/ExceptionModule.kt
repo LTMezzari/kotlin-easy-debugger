@@ -14,6 +14,7 @@ import mezzari.torres.lucas.easy_debugger.interfaces.DebuggerModule
 internal class ExceptionModule(
     private val handler: ExceptionHandler,
     private val shouldUseDefaultHandler: Boolean,
+    internal val fileProviderAuthority: String,
 ) : DebuggerModule {
     override fun onDebuggerInitialization(application: Application, debugger: EasyDebugger) {
         setupExceptionHandler(handler, shouldUseDefaultHandler)
@@ -39,7 +40,13 @@ internal class ExceptionModule(
 
 fun EasyDebugger.setExceptionModule(
     handler: ExceptionHandler = exceptionHandler,
-    shouldUseDefaultHandler: Boolean = false
+    shouldUseDefaultHandler: Boolean = false,
 ) {
-    addModule(ExceptionModule(handler, shouldUseDefaultHandler))
+    addModule(
+        ExceptionModule(
+            handler,
+            shouldUseDefaultHandler,
+            configuration.fileProviderAuthority
+        )
+    )
 }

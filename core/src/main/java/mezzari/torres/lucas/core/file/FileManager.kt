@@ -2,7 +2,6 @@ package mezzari.torres.lucas.core.file
 
 import android.content.Context
 import android.net.Uri
-import mezzari.torres.lucas.core.di.fileProviderAuthorities
 import java.io.File
 
 /**
@@ -14,7 +13,7 @@ interface FileManager {
 
     fun createFile(parent: File, path: String, fileName: String): File
 
-    fun getUriForFile(context: Context, file: File, providerName: String = fileProviderAuthorities): Uri
+    fun getUriForFile(context: Context, file: File, authority: String): Uri
 
     fun getFileName(): String
 }
