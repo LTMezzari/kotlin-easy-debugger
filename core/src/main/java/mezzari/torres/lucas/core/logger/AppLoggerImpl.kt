@@ -2,15 +2,14 @@ package mezzari.torres.lucas.core.logger
 
 import android.util.Log
 import mezzari.torres.lucas.core.BuildConfig
-import mezzari.torres.lucas.core.model.Configuration
 
 /**
  * @author Lucas T. Mezzari
  * @since 25/03/25
  **/
-class AppLoggerImpl(private val configuration: Configuration) : AppLogger {
+class AppLoggerImpl(private val configuration: LoggerFlag) : AppLogger {
 
-    private val isLogsEnabled get() = configuration.isLogsEnabled
+    private val isLogsEnabled get() = configuration.isEnabled
 
     override fun logMessage(message: String?) {
         if (!isLogsEnabled) {
@@ -53,5 +52,9 @@ class AppLoggerImpl(private val configuration: Configuration) : AppLogger {
             return className
         }
         return splitName.last()
+    }
+
+    interface LoggerFlag {
+        val isEnabled: Boolean
     }
 }

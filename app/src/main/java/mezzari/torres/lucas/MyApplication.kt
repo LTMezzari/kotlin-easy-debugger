@@ -1,9 +1,12 @@
 package mezzari.torres.lucas
 
 import android.app.Application
+import mezzari.torres.lucas.debugger.MyFileProviderConfiguration
+import mezzari.torres.lucas.debugger.debuggerModules
 import mezzari.torres.lucas.easy_debugger.EasyDebugger.Companion.setupDebugger
 import mezzari.torres.lucas.easy_debugger.debug.setDebugModule
 import mezzari.torres.lucas.easy_debugger.exception.setExceptionModule
+import mezzari.torres.lucas.easy_debugger.file.FileProviderConfiguration
 import mezzari.torres.lucas.easy_debugger.logs.setLoggerModule
 import mezzari.torres.lucas.easy_debugger.navigation.setActivityNavigationModule
 import mezzari.torres.lucas.easy_debugger.print.setPrintModule
@@ -27,6 +30,7 @@ class MyApplication : Application() {
         setupDebugger {
             setApplication(this@MyApplication)
             setLogsEnabled(BuildConfig.DEBUG)
+            setFileProviderConfiguration(MyFileProviderConfiguration())
             setDebugModule()
             setActivityNavigationModule()
             setExceptionModule()
@@ -35,7 +39,7 @@ class MyApplication : Application() {
             setNetworkModule()
             setPrintModule()
             setScreenRecordModule()
-            addModule(NetworkOptionsModule())
+            addModules(debuggerModules)
         }
 
         Network.initialize(

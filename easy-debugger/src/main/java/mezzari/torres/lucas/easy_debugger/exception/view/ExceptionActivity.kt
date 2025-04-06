@@ -9,6 +9,7 @@ import mezzari.torres.lucas.easy_debugger.databinding.ActivityExceptionBinding
 import mezzari.torres.lucas.core.generic.BaseActivity
 import mezzari.torres.lucas.easy_debugger.EasyDebugger
 import mezzari.torres.lucas.easy_debugger.exception.ExceptionModule
+import mezzari.torres.lucas.easy_debugger.file.FileProviderConfiguration
 import java.io.*
 import java.lang.Exception
 
@@ -50,9 +51,11 @@ internal class ExceptionActivity : BaseActivity() {
 
     private fun createFile(): File? {
         return try {
+            val parentFile =
+                getFileConfiguration()?.exceptionConfiguration?.getParentDir(this)
+                    ?: throw Exception("Parent was not created")
             mFileManager.createFile(
-                externalCacheDir ?: cacheDir,
-                "crashes/",
+                parentFile,
                 "${mFileManager.getFileName()}.txt"
             )
         } catch (e: Exception) {
@@ -73,7 +76,7 @@ internal class ExceptionActivity : BaseActivity() {
             val file = createFile() ?: return
             writeException(this, file)
 
-            val module = EasyDebugger.instance.getModuleByType<ExceptionModule>() ?: return
+            val module = getExceptionModule() ?: return
 
             startActivity(
                 Intent.createChooser(
@@ -84,7 +87,7 @@ internal class ExceptionActivity : BaseActivity() {
                             mFileManager.getUriForFile(
                                 this@ExceptionActivity,
                                 file,
-                                module.fileProviderAuthority
+                                module.fileConfiguration.authority
                             )
                         )
                         addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
@@ -93,5 +96,13 @@ internal class ExceptionActivity : BaseActivity() {
                 )
             )
         }
+    }
+
+    private fun getExceptionModule(): ExceptionModule? {
+        return EasyDebugger.instance.getModuleByType<ExceptionModule>()
+    }
+
+    private fun getFileConfiguration(): FileProviderConfiguration? {
+        return getExceptionModule()?.fileConfiguration
     }
 }

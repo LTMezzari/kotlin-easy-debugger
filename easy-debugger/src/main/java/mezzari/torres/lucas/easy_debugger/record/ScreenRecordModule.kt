@@ -9,6 +9,7 @@ import mezzari.torres.lucas.easy_debugger.record.manager.ScreenRecordManager
 import mezzari.torres.lucas.easy_debugger.EasyDebugger
 import mezzari.torres.lucas.easy_debugger.debug.model.DebugOption
 import mezzari.torres.lucas.easy_debugger.di.screenRecordManager
+import mezzari.torres.lucas.easy_debugger.file.FileProviderConfiguration
 import mezzari.torres.lucas.easy_debugger.interfaces.DebuggerModule
 
 /**
@@ -17,7 +18,8 @@ import mezzari.torres.lucas.easy_debugger.interfaces.DebuggerModule
  **/
 internal class ScreenRecordModule(
     private val name: String,
-    private val screenRecordManager: ScreenRecordManager
+    private val screenRecordManager: ScreenRecordManager,
+    internal val fileProviderConfiguration: FileProviderConfiguration,
 ) : DebuggerModule, Application.ActivityLifecycleCallbacks {
 
     override fun onDebuggerInitialization(application: Application, debugger: EasyDebugger) {
@@ -51,9 +53,14 @@ internal class ScreenRecordModule(
     override fun onActivityDestroyed(activity: Activity) {}
 }
 
-fun EasyDebugger.setScreenRecordModule(name: String = "Screen Record", manager: ScreenRecordManager = screenRecordManager) {
+fun EasyDebugger.setScreenRecordModule(
+    name: String = "Screen Record",
+    manager: ScreenRecordManager = screenRecordManager
+) {
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
         return
     }
-    addModule(ScreenRecordModule(name, manager))
+    val configuration = configuration.fileProviderConfiguration
+        ?: throw Exception("A File Provider Configuration should be setup for Record Module to work")
+    addModule(ScreenRecordModule(name, manager, configuration))
 }

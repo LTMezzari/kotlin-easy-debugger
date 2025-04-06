@@ -1,9 +1,10 @@
 package mezzari.torres.lucas.easy_debugger
 
 import android.app.Application
-import mezzari.torres.lucas.core.model.Configuration
+import mezzari.torres.lucas.easy_debugger.source.Configuration
 import mezzari.torres.lucas.easy_debugger.interfaces.DebuggerModule
 import mezzari.torres.lucas.easy_debugger.debug.model.DebugOption
+import mezzari.torres.lucas.easy_debugger.file.FileProviderConfiguration
 import kotlin.reflect.KClass
 
 /**
@@ -17,14 +18,14 @@ class EasyDebugger private constructor() {
     private val modules: ArrayList<DebuggerModule> = arrayListOf()
     val debugOptions: ArrayList<DebugOption> = arrayListOf()
     val navigationListeners: ArrayList<Application.ActivityLifecycleCallbacks> = arrayListOf()
-    var configuration: Configuration = Configuration(fileProviderAuthority = "")
+    var configuration: Configuration = Configuration()
 
     fun setLogsEnabled(isEnabled: Boolean) {
         configuration.isLogsEnabled = isEnabled
     }
 
-    fun setFileProviderAuthority(authority: String) {
-        configuration.fileProviderAuthority = authority
+    fun setFileProviderConfiguration(fileProviderConfiguration: FileProviderConfiguration) {
+        configuration.fileProviderConfiguration = fileProviderConfiguration
     }
 
     fun setApplication(application: Application) {

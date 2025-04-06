@@ -22,7 +22,10 @@ import mezzari.torres.lucas.core.file.FileManager
 import mezzari.torres.lucas.core.generic.BaseService
 import mezzari.torres.lucas.core.logger.AppLogger
 import mezzari.torres.lucas.core.notification.NotificationDispatcher
+import mezzari.torres.lucas.easy_debugger.EasyDebugger
 import mezzari.torres.lucas.easy_debugger.di.appLogger
+import mezzari.torres.lucas.easy_debugger.file.FileProviderConfiguration
+import mezzari.torres.lucas.easy_debugger.record.ScreenRecordModule
 import mezzari.torres.lucas.easy_debugger.record.receiver.OnScreenRecordStoppedReceiver
 
 /**
@@ -82,6 +85,10 @@ internal class ScreenRecordService : BaseService() {
     private fun prepare(context: Context) {
         try {
             mAppLogger.logMessage("Preparing ScreenRecord")
+
+            val parentFile = getFileConfiguration()?.recordConfiguration?.getParentDir(context)
+                ?: throw Exception("Parent file was not created")
+
             val mediaRecorder = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 MediaRecorder(context)
             } else {
@@ -89,7 +96,7 @@ internal class ScreenRecordService : BaseService() {
             }
 
             val file = mFileManager.createFile(
-                context.getExternalFilesDir("recordings") ?: context.filesDir,
+                parentFile,
                 "${mFileManager.getFileName()}.mp4"
             )
 
@@ -128,14 +135,14 @@ internal class ScreenRecordService : BaseService() {
             mediaProjection = mediaProjectionManager.getMediaProjection(resultCode, data)
             val handler = Handler(Looper.getMainLooper())
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-                mediaProjection.registerCallback(object: MediaProjection.Callback() {
+                mediaProjection.registerCallback(object : MediaProjection.Callback() {
                     override fun onStop() {
                         super.onStop()
                     }
                 }, handler)
                 return
             }
-            mediaProjection.registerCallback(object: MediaProjection.Callback() {}, handler)
+            mediaProjection.registerCallback(object : MediaProjection.Callback() {}, handler)
         } catch (e: Exception) {
             mAppLogger.logError(e)
         }
@@ -178,10 +185,22 @@ internal class ScreenRecordService : BaseService() {
                     snoozePendingIntent
                 ).build()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            startForeground(NOTIFICATION_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PROJECTION)
+            startForeground(
+                NOTIFICATION_ID,
+                notification,
+                ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PROJECTION
+            )
             return
         }
         startForeground(NOTIFICATION_ID, notification)
+    }
+
+    private fun getScreenRecordModule(): ScreenRecordModule? {
+        return EasyDebugger.instance.getModuleByType<ScreenRecordModule>()
+    }
+
+    private fun getFileConfiguration(): FileProviderConfiguration? {
+        return getScreenRecordModule()?.fileProviderConfiguration
     }
 
     companion object {

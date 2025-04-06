@@ -16,12 +16,17 @@ import mezzari.torres.lucas.core.logger.AppLogger
 import mezzari.torres.lucas.core.print.PrintScreenManager
 import mezzari.torres.lucas.easy_debugger.debug.model.DebugOption
 import mezzari.torres.lucas.easy_debugger.di.appLogger
+import mezzari.torres.lucas.easy_debugger.file.FileProviderConfiguration
 
 /**
  * @author Lucas T. Mezzari
  * @since 17/03/25
  **/
-class PrintModule(private val name: String, private val appLogger: AppLogger, private val authority: String) : DebuggerModule,
+class PrintModule(
+    private val name: String,
+    private val appLogger: AppLogger,
+    private val fileConfiguration: FileProviderConfiguration
+) : DebuggerModule,
     Application.ActivityLifecycleCallbacks {
 
     private val mFileManager: FileManager by lazy { fileManager }
@@ -56,8 +61,11 @@ class PrintModule(private val name: String, private val appLogger: AppLogger, pr
 
     private fun createFile(activity: Activity): File? {
         return try {
+            val parentFile =
+                fileConfiguration.printConfiguration.getParentDir(activity)
+                    ?: throw Exception("Parent was not created")
             mFileManager.createFile(
-                activity.getExternalFilesDir("prints") ?: activity.filesDir,
+                parentFile,
                 "${mFileManager.getFileName()}.jpg"
             )
         } catch (e: java.lang.Exception) {
@@ -77,7 +85,8 @@ class PrintModule(private val name: String, private val appLogger: AppLogger, pr
         activity.startActivity(
             Intent.createChooser(
                 Intent(Intent.ACTION_SEND).apply {
-                    val uri = mFileManager.getUriForFile(activity, file, authority)
+                    val uri =
+                        mFileManager.getUriForFile(activity, file, fileConfiguration.authority)
                     setDataAndType(uri, "image/*")
                     putExtra(
                         Intent.EXTRA_STREAM,
@@ -116,5 +125,7 @@ class PrintModule(private val name: String, private val appLogger: AppLogger, pr
 }
 
 fun EasyDebugger.setPrintModule(name: String = "Print") {
-    addModule(PrintModule(name, appLogger, configuration.fileProviderAuthority))
+    val configuration = configuration.fileProviderConfiguration
+        ?: throw Exception("A File Provider Configuration should be setup for Print Module to work")
+    addModule(PrintModule(name, appLogger, configuration))
 }
