@@ -6,7 +6,7 @@ import android.media.projection.MediaProjectionManager
 import androidx.activity.result.ActivityResultLauncher
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LifecycleOwner
-import mezzari.torres.lucas.core.logger.AppLogger
+import mezzari.torres.lucas.easy_debugger.logger.AppLogger
 import mezzari.torres.lucas.easy_debugger.record.contract.ScreenRecordContract
 import mezzari.torres.lucas.easy_debugger.record.service.ScreenRecordService
 import java.lang.ref.WeakReference

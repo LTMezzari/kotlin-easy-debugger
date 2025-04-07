@@ -1,6 +1,6 @@
 package mezzari.torres.lucas.easy_debugger.source
 
-import mezzari.torres.lucas.core.logger.AppLoggerImpl
+import mezzari.torres.lucas.easy_debugger.logger.AppLoggerImpl
 import mezzari.torres.lucas.easy_debugger.file.FileProviderConfiguration
 
 /**

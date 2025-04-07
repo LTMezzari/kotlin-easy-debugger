@@ -1,6 +1,6 @@
 package mezzari.torres.lucas.easy_debugger_network.interceptor
 
-import mezzari.torres.lucas.core.model.ObservableList
+import mezzari.torres.lucas.easy_debugger.source.model.ObservableList
 import mezzari.torres.lucas.easy_debugger_network.model.NetworkLog
 import mezzari.torres.lucas.easy_debugger_network.model.NetworkRequest
 import mezzari.torres.lucas.easy_debugger_network.model.NetworkResponse

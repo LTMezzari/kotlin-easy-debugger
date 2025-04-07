@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import mezzari.torres.lucas.R
-import mezzari.torres.lucas.core.generic.BaseFragment
+import mezzari.torres.lucas.easy_debugger.generic.BaseFragment
 import mezzari.torres.lucas.databinding.FragmentMainBinding
 import java.lang.RuntimeException
 

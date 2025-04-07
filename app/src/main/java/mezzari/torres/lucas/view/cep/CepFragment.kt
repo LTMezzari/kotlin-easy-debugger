@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import mezzari.torres.lucas.core.generic.BaseFragment
+import mezzari.torres.lucas.easy_debugger.generic.BaseFragment
 import mezzari.torres.lucas.databinding.FragmentCepBinding
 import mezzari.torres.lucas.network.viacep.ViacepService
 

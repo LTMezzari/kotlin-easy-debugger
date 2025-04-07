@@ -5,7 +5,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import mezzari.torres.lucas.R
-import mezzari.torres.lucas.core.generic.BaseActivity
+import mezzari.torres.lucas.easy_debugger.generic.BaseActivity
 import mezzari.torres.lucas.databinding.ActivityMainBinding
 
 /**

@@ -5,7 +5,7 @@ import android.view.Gravity.*
 import androidx.appcompat.app.AppCompatActivity
 import mezzari.torres.lucas.easy_debugger.databinding.LayoutFloatingDebugViewBinding
 import mezzari.torres.lucas.easy_debugger.debug.view.dialog.DebugDialog
-import mezzari.torres.lucas.core.generic.BaseFloatingViewService
+import mezzari.torres.lucas.easy_debugger.generic.BaseFloatingViewService
 import mezzari.torres.lucas.easy_debugger.EasyDebugger
 import mezzari.torres.lucas.easy_debugger.debug.DebugModule
 

@@ -31,6 +31,7 @@ android {
     compileSdkVersion(targetVersion)
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
     defaultConfig {
         minSdk = minVersion
@@ -67,7 +68,4 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.junit.ext)
     androidTestImplementation(libs.expresso)
-
-    //Project
-    implementation(project(":core"))
 }

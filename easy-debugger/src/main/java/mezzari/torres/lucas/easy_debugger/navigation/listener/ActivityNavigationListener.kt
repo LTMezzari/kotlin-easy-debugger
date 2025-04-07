@@ -4,7 +4,7 @@ import android.app.Activity
 import android.app.Application
 import android.os.Bundle
 import androidx.lifecycle.Lifecycle
-import mezzari.torres.lucas.core.logger.AppLogger
+import mezzari.torres.lucas.easy_debugger.logger.AppLogger
 import mezzari.torres.lucas.easy_debugger.navigation.model.ActivityNavigationStack
 import mezzari.torres.lucas.easy_debugger.navigation.model.ActivityWrapper
 

@@ -5,8 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import mezzari.torres.lucas.core.archive.listenerForObservableList
-import mezzari.torres.lucas.core.model.ObservableList
+import mezzari.torres.lucas.easy_debugger.archive.listenerForObservableList
+import mezzari.torres.lucas.easy_debugger.source.model.ObservableList
 import mezzari.torres.lucas.easy_debugger.EasyDebugger
 import mezzari.torres.lucas.easy_debugger.databinding.LayoutMinimizedNavigationStackBinding
 import mezzari.torres.lucas.easy_debugger.generics.MinimizedWindow

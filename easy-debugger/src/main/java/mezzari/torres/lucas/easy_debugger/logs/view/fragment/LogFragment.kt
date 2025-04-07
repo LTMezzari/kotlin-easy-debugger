@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import mezzari.torres.lucas.easy_debugger.logs.view.adapter.LogAdapter
 import mezzari.torres.lucas.easy_debugger.EasyDebugger
 import mezzari.torres.lucas.easy_debugger.databinding.FragmentLogBinding
-import mezzari.torres.lucas.core.generic.BaseFragment
+import mezzari.torres.lucas.easy_debugger.generic.BaseFragment
 import mezzari.torres.lucas.easy_debugger.logs.LogModule
 import mezzari.torres.lucas.easy_debugger.logs.listener.LogListener
 
