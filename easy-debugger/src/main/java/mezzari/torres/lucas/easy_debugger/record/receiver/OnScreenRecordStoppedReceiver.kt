@@ -3,8 +3,8 @@ package mezzari.torres.lucas.easy_debugger.record.receiver
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import mezzari.torres.lucas.core.di.notificationDispatcher
-import mezzari.torres.lucas.core.notification.NotificationDispatcher
+import mezzari.torres.lucas.easy_debugger.notification.NotificationDispatcher
+import mezzari.torres.lucas.easy_debugger.di.notificationDispatcher
 import mezzari.torres.lucas.easy_debugger.di.screenRecordManager
 import mezzari.torres.lucas.easy_debugger.record.manager.ScreenRecordManager
 import mezzari.torres.lucas.easy_debugger.record.service.ScreenRecordService

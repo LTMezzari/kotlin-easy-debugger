@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import mezzari.torres.lucas.core.generic.BaseFragment
+import mezzari.torres.lucas.easy_debugger.generic.BaseFragment
 import mezzari.torres.lucas.databinding.FragmentJokesBinding
 import mezzari.torres.lucas.model.Joke
 import mezzari.torres.lucas.network.jokes.JokesService

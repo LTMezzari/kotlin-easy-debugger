@@ -2,7 +2,7 @@ package mezzari.torres.lucas.easy_debugger.navigation
 
 import android.app.Application
 import androidx.fragment.app.Fragment
-import mezzari.torres.lucas.core.logger.AppLogger
+import mezzari.torres.lucas.easy_debugger.logger.AppLogger
 import mezzari.torres.lucas.easy_debugger.EasyDebugger
 import mezzari.torres.lucas.easy_debugger.debug.model.DebugOption
 import mezzari.torres.lucas.easy_debugger.debug.model.DebugPageRedirect

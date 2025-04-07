@@ -9,9 +9,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import mezzari.torres.lucas.core.di.appDispatcher
-import mezzari.torres.lucas.core.interfaces.AppDispatcher
-import mezzari.torres.lucas.core.model.ObservableList
+import mezzari.torres.lucas.easy_debugger.di.appDispatcher
+import mezzari.torres.lucas.easy_debugger.interfaces.AppDispatcher
+import mezzari.torres.lucas.easy_debugger.source.model.ObservableList
 import mezzari.torres.lucas.easy_debugger.generics.MinimizedWindow
 import mezzari.torres.lucas.easy_debugger_network.databinding.FragmentNetworkLoggerBinding
 import mezzari.torres.lucas.easy_debugger_network.interceptor.NetworkInterceptor

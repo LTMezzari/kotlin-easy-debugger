@@ -2,7 +2,7 @@ package mezzari.torres.lucas.easy_debugger.navigation.model
 
 import android.app.Activity
 import androidx.lifecycle.Lifecycle
-import mezzari.torres.lucas.core.model.ObservableList
+import mezzari.torres.lucas.easy_debugger.source.model.ObservableList
 
 /**
  * @author Lucas T. Mezzari

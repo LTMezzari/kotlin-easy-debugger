@@ -3,11 +3,11 @@ package mezzari.torres.lucas.easy_debugger.exception.view
 import android.content.Intent
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
-import mezzari.torres.lucas.core.di.fileManager
-import mezzari.torres.lucas.core.file.FileManager
+import mezzari.torres.lucas.easy_debugger.file.manager.FileManager
 import mezzari.torres.lucas.easy_debugger.databinding.ActivityExceptionBinding
-import mezzari.torres.lucas.core.generic.BaseActivity
+import mezzari.torres.lucas.easy_debugger.generic.BaseActivity
 import mezzari.torres.lucas.easy_debugger.EasyDebugger
+import mezzari.torres.lucas.easy_debugger.di.fileManager
 import mezzari.torres.lucas.easy_debugger.exception.ExceptionModule
 import mezzari.torres.lucas.easy_debugger.file.FileProviderConfiguration
 import java.io.*

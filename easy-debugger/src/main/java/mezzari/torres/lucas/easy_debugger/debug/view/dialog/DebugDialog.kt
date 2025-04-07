@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import mezzari.torres.lucas.easy_debugger.databinding.DialogDebugBinding
 import mezzari.torres.lucas.easy_debugger.debug.view.dialog.adapter.DebugOptionsAdapter
 import mezzari.torres.lucas.easy_debugger.debug.model.DebugOption
-import mezzari.torres.lucas.core.generic.BaseDialog
+import mezzari.torres.lucas.easy_debugger.generic.BaseDialog
 
 /**
  * @author Lucas T. Mezzari

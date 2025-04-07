@@ -9,13 +9,13 @@ import mezzari.torres.lucas.easy_debugger.EasyDebugger
 import mezzari.torres.lucas.easy_debugger.interfaces.DebuggerModule
 import java.io.File
 import java.io.FileOutputStream
-import mezzari.torres.lucas.core.di.fileManager
-import mezzari.torres.lucas.core.di.printScreenManager
-import mezzari.torres.lucas.core.file.FileManager
-import mezzari.torres.lucas.core.logger.AppLogger
-import mezzari.torres.lucas.core.print.PrintScreenManager
+import mezzari.torres.lucas.easy_debugger.file.manager.FileManager
+import mezzari.torres.lucas.easy_debugger.logger.AppLogger
+import mezzari.torres.lucas.easy_debugger.print.PrintScreenManager
 import mezzari.torres.lucas.easy_debugger.debug.model.DebugOption
 import mezzari.torres.lucas.easy_debugger.di.appLogger
+import mezzari.torres.lucas.easy_debugger.di.fileManager
+import mezzari.torres.lucas.easy_debugger.di.printScreenManager
 import mezzari.torres.lucas.easy_debugger.file.FileProviderConfiguration
 
 /**

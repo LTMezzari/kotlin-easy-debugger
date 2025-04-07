@@ -78,6 +78,5 @@ dependencies {
     implementation(libs.network)
 
     //Project
-    implementation(project(":core"))
     implementation(project(":easy-debugger"))
 }

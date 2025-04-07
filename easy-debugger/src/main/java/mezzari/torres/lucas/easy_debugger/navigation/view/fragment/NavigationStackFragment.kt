@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import mezzari.torres.lucas.core.archive.listenWithAdapter
+import mezzari.torres.lucas.easy_debugger.archive.listenWithAdapter
 import mezzari.torres.lucas.easy_debugger.EasyDebugger
 import mezzari.torres.lucas.easy_debugger.databinding.FragmentNavigationStackBinding
-import mezzari.torres.lucas.core.generic.BaseFragment
+import mezzari.torres.lucas.easy_debugger.generic.BaseFragment
 import mezzari.torres.lucas.easy_debugger.navigation.ActivityNavigationModule
 import mezzari.torres.lucas.easy_debugger.navigation.model.ActivityNavigationStack
 import mezzari.torres.lucas.easy_debugger.navigation.view.adapter.NavigationStackAdapter

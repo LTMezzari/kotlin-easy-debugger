@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import mezzari.torres.lucas.easy_debugger.databinding.LayoutMinimizedDebugViewBinding
-import mezzari.torres.lucas.core.generic.BaseFloatingViewService
+import mezzari.torres.lucas.easy_debugger.generic.BaseFloatingViewService
 import mezzari.torres.lucas.easy_debugger.EasyDebugger
 import mezzari.torres.lucas.easy_debugger.debug.DebugModule
 import mezzari.torres.lucas.easy_debugger.debug.listener.DraggableTouchListener

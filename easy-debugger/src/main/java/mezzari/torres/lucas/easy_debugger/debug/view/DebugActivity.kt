@@ -12,9 +12,9 @@ import mezzari.torres.lucas.easy_debugger.EasyDebugger
 import mezzari.torres.lucas.easy_debugger.R
 import mezzari.torres.lucas.easy_debugger.databinding.ActivityDebugBinding
 import mezzari.torres.lucas.easy_debugger.debug.DebugModule
-import mezzari.torres.lucas.core.generic.BaseActivity
-import mezzari.torres.lucas.core.logger.AppLogger
-import mezzari.torres.lucas.core.service.FloatingWindowManager
+import mezzari.torres.lucas.easy_debugger.generic.BaseActivity
+import mezzari.torres.lucas.easy_debugger.logger.AppLogger
+import mezzari.torres.lucas.easy_debugger.service.FloatingWindowManager
 import mezzari.torres.lucas.easy_debugger.debug.service.DebugActivityService
 import mezzari.torres.lucas.easy_debugger.di.appLogger
 import mezzari.torres.lucas.easy_debugger.di.floatingWindowManager
