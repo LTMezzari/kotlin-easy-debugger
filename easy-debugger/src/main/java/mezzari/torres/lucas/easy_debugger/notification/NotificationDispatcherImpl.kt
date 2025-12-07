@@ -19,7 +19,7 @@ class NotificationDispatcherImpl : NotificationDispatcher {
         channelName: String,
         description: String?
     ): Boolean {
-        mezzari.torres.lucas.easy_debugger.archive.createNotificationChannel(
+        createNotificationChannel(
             context,
             channelId,
             channelName,
