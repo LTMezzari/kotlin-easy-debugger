@@ -27,8 +27,14 @@
             android:name=".record.service.ScreenRecordService"
             android:exported="false"
             android:foregroundServiceType="mediaProjection" />
+        <service
+            android:name=".debug.service.DebugNotificationService"
+            android:exported="false"
+            android:enabled="true"
+            android:foregroundServiceType="specialUse" />
 
         <receiver android:name=".record.receiver.OnScreenRecordStoppedReceiver" />
+        <receiver android:name=".debug.receiver.DebugNotificationReceiver" />
     </application>
 
 </manifest>

@@ -2,8 +2,11 @@ package mezzari.torres.lucas.easy_debugger.debug
 
 import android.app.Activity
 import android.app.Application
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import mezzari.torres.lucas.easy_debugger.EasyDebugger
+import mezzari.torres.lucas.easy_debugger.debug.service.DebugNotificationService
 import mezzari.torres.lucas.easy_debugger.debug.service.FloatingDebugViewService
 import mezzari.torres.lucas.easy_debugger.interfaces.DebuggerModule
 import java.lang.Exception
@@ -19,7 +22,8 @@ import mezzari.torres.lucas.easy_debugger.logs.LogModule
  **/
 internal class DebugModule(
     private val manager: FloatingWindowManager,
-    private val logger: AppLogger
+    private val logger: AppLogger,
+    private val floatingView: Boolean
 ) :
     DebuggerModule, Application.ActivityLifecycleCallbacks {
 
@@ -33,6 +37,11 @@ internal class DebugModule(
     override fun onDebuggerInitialization(application: Application, debugger: EasyDebugger) {
         debugger.navigationListeners.add(this)
         currentActiveModule = EasyDebugger.instance.getModuleByType<LogModule>()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            application.startForegroundService(Intent(application, DebugNotificationService::class.java))
+        } else {
+            application.startService(Intent(application, DebugNotificationService::class.java))
+        }
     }
 
     override fun onActivityPaused(activity: Activity) {}
@@ -40,6 +49,9 @@ internal class DebugModule(
     override fun onActivityStarted(activity: Activity) {
         if (currentActivity != activity) {
             currentActivity = activity
+        }
+        if (!floatingView) {
+            return
         }
         startCount++
         if (!hasPutTheFloatingView) {
@@ -90,6 +102,6 @@ internal class DebugModule(
     }
 }
 
-fun EasyDebugger.setDebugModule() {
-    addModule(DebugModule(floatingWindowManager, appLogger))
+fun EasyDebugger.setDebugModule(floatingView: Boolean = true) {
+    addModule(DebugModule(floatingWindowManager, appLogger, floatingView))
 }

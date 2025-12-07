@@ -6,7 +6,6 @@ import mezzari.torres.lucas.debugger.debuggerModules
 import mezzari.torres.lucas.easy_debugger.EasyDebugger.Companion.setupDebugger
 import mezzari.torres.lucas.easy_debugger.debug.setDebugModule
 import mezzari.torres.lucas.easy_debugger.exception.setExceptionModule
-import mezzari.torres.lucas.easy_debugger.file.FileProviderConfiguration
 import mezzari.torres.lucas.easy_debugger.logs.setLoggerModule
 import mezzari.torres.lucas.easy_debugger.navigation.setActivityNavigationModule
 import mezzari.torres.lucas.easy_debugger.print.setPrintModule
@@ -14,7 +13,6 @@ import mezzari.torres.lucas.easy_debugger.record.setScreenRecordModule
 import mezzari.torres.lucas.easy_debugger.settings.setSettingsModule
 import mezzari.torres.lucas.easy_debugger_network.network.NetworkLoggerModule
 import mezzari.torres.lucas.easy_debugger_network.setNetworkModule
-import mezzari.torres.lucas.module.NetworkOptionsModule
 import mezzari.torres.lucas.network.source.Network
 import mezzari.torres.lucas.network.source.module.client.LogModule
 import mezzari.torres.lucas.network.source.module.retrofit.GsonConverterModule
@@ -31,7 +29,7 @@ class MyApplication : Application() {
             setApplication(this@MyApplication)
             setLogsEnabled(BuildConfig.DEBUG)
             setFileProviderConfiguration(MyFileProviderConfiguration())
-            setDebugModule()
+            setDebugModule(true)
             setActivityNavigationModule()
             setExceptionModule()
             setLoggerModule()
